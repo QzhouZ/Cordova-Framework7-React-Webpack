@@ -1,5 +1,8 @@
 # 介绍
 基于Cordova + Framework7 + React + Webpack构建混合app，支持React代码热加载
+[Framework7中文官网](http://f7cn.com/)
+
+[react中文官网](http://reactjs.cn/)
 
 # 开发说明
  
