@@ -27,18 +27,16 @@ var Unit = {
         }
         var method = options.method || "get";
         var api = options.api || "";
-        var url = options.url || this.url + api;
+        var url = options.url || this.url + api + '.json';
         $$.ajax({
             method: method,
             url: url,
             data: params,
             dataType: "json",
             success: function(data) {
-                Unit.loading("close");
                 successCallback(data);
             },
             error: function() {
-                Unit.loading("close");
                 if (errorCallback) {
                     errorCallback();
                 } else {
@@ -54,56 +52,41 @@ var Unit = {
 Unit.clientWidth = document.body.clientWidth;
 // 获取设备可视高度
 Unit.clientHeight = document.body.clientHeight;
+
+
 /**
- * 加载层封装
- * msg[string]: 消息内容
- * type[number]: 加载层类型,若为0则不显示菊花
- * time[number]: 加载层存在时间
+ * 信息提示框
+ * msg[string]: 信息内容
+ * duration[number]: 持续时间
  */
-Unit.loading = function(msg, type, time) {
-    var tpl;
-    var msg = msg || '';
-    window.loadingDuration = '';
-    var msk = ".loading-mask";
-    if (window.loadingDuration) {
-        clearTimeout(window.loadingDuration);
+Unit.toast = function(msg, duration) {
+    var toast = $$('<div class="modal toast">'+msg+'</div>');
+    if ($$('.toast').length) {
+        return;
     }
-    if (arguments[0] == "close") {
-        $$(msk).remove();
-        return false;
+    $$('body').append(toast);
+
+    $$(toast).show();
+    $$(toast).css({
+        marginTop: - Math.round($$(toast).outerHeight() / 2) + 'px'
+    });
+    $$(toast).css({
+        marginLeft: - Math.round($$(toast).outerWidth() / 2 / 1.185) + 'px' //1.185 是初始化时候的放大效果
+    });
+    $$(toast).addClass('modal-in').transitionEnd(function () {
+
+    });
+    $$(toast).on('click', function() {
+        remove();
+    });
+    function remove() {
+        $$(toast).removeClass('modal-in').addClass('modal-out').transitionEnd(function () {
+            $$(this).remove();
+        });
     }
-    if (arguments.length == 2) {
-        time = arguments[1];
-    }
-    if (time > 0) {
-        window.loadingDuration = setTimeout(function() {
-            $$(msk).animate({opacity: 0}, 500, 'ease-out', function() {
-                $$(msk).remove();
-            });
-        }, time)
-    }
-    if ($$(msk).length > 0) {
-        $$(msk).remove();
-    }
-    if (type == 0) {
-        tpl = '<div class="loading-mask">'
-                +'<div class="loading">'
-                    +'<div>'+msg+'</div>'
-                    +'</div>'
-                +'</div>';
-    } else {
-        var msgHtml = '';
-        if (msg) {
-            msgHtml = '<div class="mt5">'+msg+'</div>';
-        }
-        tpl = '<div class="loading-mask">'
-                +'<div class="loading">'
-                    +'<i style="width:40px; height:40px" class="preloader preloader-white"></i>'
-                    + msgHtml
-                +'</div>'
-            +'</div>';
-    }
-    $$("body").append(tpl);
+    setTimeout(function() {
+        remove();
+    }, duration || 1500);
 };
 
 

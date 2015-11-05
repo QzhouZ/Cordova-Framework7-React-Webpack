@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <title>APP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="lib/framework7/framework7.ios.css">
+    <link rel="stylesheet" href="lib/framework7/framework7.ios.colors.css">
     <link rel="stylesheet" href="app.css">
 </head>
 <body class="theme-white">
     <div class="statusbar-overlay" style="background: #2b793e;"></div>
-    <div class="views tabs">
-        <div id="home_view" class="view view-main tab active">
+    <div class="views">
+        <div class="view view-main">
             <div class="pages">
                 <div data-page="home" class="page navbar-fixed toolbar-fixed">
                     <div class="navbar search-header">
@@ -31,16 +33,12 @@
                             </div>
                         </div>
                     </div>
-                    <div id="home_content" class="page-content">
+                    <div id="home_content" class="page-content pull-to-refresh-content">
 
                     </div>
                     <div id="home_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
                 </div>
-            </div>
-        </div>
-        <div id="cate_view" class="view tab">
-            <div class="pages">
-                <div data-page="cate" class="page navbar-fixed toolbar-fixed">
+                <div data-page="cate" class="page navbar-fixed toolbar-fixed cached">
                     <div class="navbar search-header">
                         <div class="navbar-inner">
                             <div class="left">
@@ -64,11 +62,7 @@
                     </div>
                     <div id="cate_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
                 </div>
-            </div>
-        </div>
-        <div id="cart_view" class="view tab">
-            <div class="pages">
-                <div data-page="cart" class="page navbar-fixed toolbar-fixed">
+                <div data-page="cart" class="page navbar-fixed toolbar-fixed cached">
                     <div class="navbar home-header">
                         <div class="navbar-inner">
                             <div class="center sliding">
@@ -81,11 +75,7 @@
                     </div>
                     <div id="cart_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
                 </div>
-            </div>
-        </div>
-        <div id="ucenter_view" class="view tab">
-            <div class="pages">
-                <div data-page="ucenter" class="page toolbar-through">
+                <div data-page="ucenter" class="page toolbar-fixed cached">
                     <div id="ucenter_content" class="page-content">
 
                     </div>
@@ -99,7 +89,7 @@
         <div class="popover-inner" id="quick_menu_content">
         </div>
     </div>
-    <script src="lib/framework7.js"></script>
+    <script src="lib/framework7/framework7.js"></script>
     <script src="js/bundle.js"></script>
 </body>
 </html>

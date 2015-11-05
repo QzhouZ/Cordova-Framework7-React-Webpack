@@ -5,13 +5,41 @@
 
 'use strict';
 var React = require('react');
+var Unit = require('lib/unit');
 
 var LoginContent = React.createClass({
 	login: function() {
-		var author = this.refs.author.getDOMNode().value;
-		console.log(author);
-		
+        var that = this;
+		var user = this.refs.user.getDOMNode().value;
+        var password = this.refs.password.getDOMNode().value;
+        if (user == '') {
+            F7.alert('用户名不能为空！');
+            return;
+        }
+        if (password == '') {
+            F7.alert('密码不能为空！');
+            return;
+        }
+        F7.showIndicator();
+        Unit.ajax({
+            api: 'search_hot'
+        }, function(data) {
+            F7.hideIndicator();
+            if (data.status == 1) {
+                currentView.router.back();
+            }
+        });
 	},
+    switch: function() {
+        var domname=$$("#pass_switch").attr("class");
+        if(domname == "state-img"){
+            $$("#pass_switch").addClass("active");
+            $$("#password").attr("type","password");
+        }else{
+            $$("#pass_switch").removeClass("active");
+            $$("#password").attr("type","text");
+        }
+    },
 	render: function () {
         return (
             <div className="login-content">
@@ -20,8 +48,26 @@ var LoginContent = React.createClass({
                         <img src="img/avatar.png"/>
                     </div>
                 </div>
-            	<input value="222" type="text" placeholder="Your name" ref="author" />
-            	<div className="login-btn" onClick={this.login}>Login</div>
+                <div className="login-up">
+                    <div className="login-up-sbox">
+                        <label className="fix">
+                            <input  className="user" type="text" placeholder="输入您的登录账号/手机号码" ref="user" />
+                        </label>
+                    </div>
+                    <div className="login-up-sbox">
+                        <label className="fix">
+                            <input id="password" className="password" type="text" placeholder="输入您的密码" ref="password" />
+                            <div className="pwimgbox"><span id="pass_switch" className="state-img" onClick={this.switch}></span></div>
+                        </label>
+                    </div>
+                </div>
+                <div className="login-btnbox">
+                    <span  className="login-btn" onClick={this.login}>登录</span>
+                </div>
+                <div className="login-link fix">
+                    <span ><a href="view/register.html" className="lfbox">注册</a></span>
+                    <span ><a href="#" className="lrbox">找回密码</a></span>
+                </div>
             </div>
         );
     }

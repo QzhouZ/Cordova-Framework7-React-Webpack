@@ -1,0 +1,179 @@
+{
+	"status": 1,
+	"data": {
+        "ad": [{
+            "src": "data/img/b1.jpg",
+            "href": "view/goods_list.html"
+        },{
+            "src": "data/img/b1.jpg",
+            "href": "view/goods_list.html"
+        },{
+            "src": "data/img/b1.jpg",
+            "href": "view/goods_list.html"
+        }],
+        "column": [{
+            "id": 1,
+            "name": "医保用药",
+            "icon": "img/ybyy.png"
+        },{
+            "id": 2,
+            "name": "中西成药",
+            "icon": "img/zxcy.png"
+        },{
+            "id": 3,
+            "name": "医疗器械",
+            "icon": "img/ylqx.png"
+        },{
+            "id": 4,
+            "name": "计生用品",
+            "icon": "img/jsyp.png"
+        },{
+            "id": 5,
+            "name": "家庭药箱",
+            "icon": "img/jtyx.png"
+        },{
+            "id": 6,
+            "name": "滋补保健",
+            "icon": "img/zbbj.png"
+        },{
+            "id": 7,
+            "name": "维矿营养",
+            "icon": "img/wkyy.png"
+        },{
+            "id": 8,
+            "name": "药妆个护",
+            "icon": "img/yzgh.png"
+        },{
+            "id": 9,
+            "name": "药妆个护",
+            "icon": "img/yzgh.png"
+        }],
+        "brand": [{
+            "id": 1,
+            "src": "data/img/brand_1.png"
+        },{
+            "id": 2,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        },{
+            "id": 3,
+            "src": "data/img/brand_2.png"
+        }],
+        "hot": [{
+            "id":1,
+            "name": "欧姆龙HEM-7111",
+            "title": "臂式电子血压计",
+            "oldPrice": "400.00",
+            "price": "300.00",
+            "src": "data/img/hot_msg.png"
+        },{
+            "id":2,
+            "name": "汤臣倍健",
+            "title": "蛋白质粉455g",
+            "oldPrice": "400.00",
+            "price": "300.00",
+            "src": "data/img/hot_1.png"
+        },{
+            "id":3,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/hot_2.png"
+        },{
+            "id":4,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "500.00",
+            "price": "300.00",
+            "src": "data/img/hot_2.png"
+        }],
+        "newProduct":  [{
+            "id": 1,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/hot_2.png"
+        },{
+            "id": 2,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/hot_1.png"
+        },{
+            "id": 3,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/b1.jpg"
+        },{
+            "id": 4,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/b1.jpg"
+        }],
+        "singleProduct":  [{
+            "id": 1,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/hot_2.png"
+        },{
+            "id": 2,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/hot_1.png"
+        },{
+            "id": 3,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/b1.jpg"
+        },{
+            "id": 4,
+            "name": "爱乐维",
+            "title": "复合维生素片",
+            "oldPrice": "600.00",
+            "price": "300.00",
+            "src": "data/img/b1.jpg"
+        }]
+    }
+}

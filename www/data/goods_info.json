@@ -1,0 +1,30 @@
+{
+	"status": 1,
+	"data": {
+        "type": 1,
+        "slider": [{
+            "src": "data/img/goods_cover_1.jpg"
+        },{
+            "src": "data/img/cx_1.png"
+        },{
+            "src": "data/img/cx_2.png"
+        }],
+       "info": {
+           "name": "博士伦 润明隐形眼镜多功能护理液 60ml",
+           "oldPrice": "119.00",
+           "price": "49.00",
+           "sellNumber": "已抢购200盒",
+           "startTime": "2015-05-01 00:00:00",
+           "endTime": "2015-05-03 00:00:00",
+           "limited": "100盒",
+           "attr1": "处方类型：非处方药",
+           "attr2": "医保类型：非医保",
+           "attr3": "生产企业：美国博士伦（Bausch & Lomb）隐形眼镜公司 ",
+           "attr4": "批准文号：国食药监械(进)字2013第3220573号",
+           "store": "本商品由海宁老百姓大药房提供",
+           "stock": "500盒",
+           "serviceScore": "50%",
+           "sendScore": "100%"
+       }
+    }
+}

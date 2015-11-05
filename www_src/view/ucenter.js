@@ -55,7 +55,7 @@ var UcenterContent = React.createClass({
                         <li className="flex order-list">
                             <a className="item" href="#">
                                 <img src="img/dps.png" />
-                                <span className="badge">1</span>
+                                <span className="badge position-badge">1</span>
                             </a>
                             <a className="item" href="#">
                                 <img src="img/dsh.png" />

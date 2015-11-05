@@ -2,5 +2,6 @@ node_modules/
 .idea/
 platforms/
 npm-debug.log
-app.css
 www/js/*
+app.css
+www_src/view_less/*.css

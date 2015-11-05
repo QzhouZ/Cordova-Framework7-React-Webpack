@@ -56,7 +56,7 @@ var SearchContent = React.createClass({
     componentDidMount: function() {
         var that = this;
         Unit.ajax({
-            api: 'search_hot.json'
+            api: 'search_hot'
         }, function(data) {
             if (data.status == 1) {
                 that.setState({

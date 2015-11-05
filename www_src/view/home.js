@@ -8,39 +8,70 @@ var React = require('react');
 var moment = require('moment');
 var Unit = require('lib/unit');
 
-
-
 var HomeContent = React.createClass({
     getInitialState: function() {
         return {
-            data: []
+            slideData: [],
+            columnData: [],
+            brandData: [],
+            hotData: [],
+            newData: [],
+            singleData: []
         }
     },
+    getData: function(callBack) {
+        var that = this;
+        Unit.ajax({
+            api: 'home'
+        }, function(data) {
+            var res = data.data;
+            if (data.status == 1) {
+                var fmtColumnData = Unit.fmtDataArry(res.column, 8);
+                var fmtBrandData = Unit.fmtDataArry(res.brand, 12);
+                that.setState({
+                    slideData: res.ad,
+                    columnData:fmtColumnData,
+                    brandData: fmtBrandData,
+                    hotData: res.hot,
+                    newData: res.newProduct,
+                    singleData: res.singleProduct
+                });
+                callBack && callBack();
+            }
+        });
+    },
     render: function () {
+        var state = this.state;
         return (
             <div className="home-content">
-                <Slider />
-                <Sort />
+                <div className="pull-to-refresh-layer">
+                    <div className="preloader"></div>
+                    <div className="pull-to-refresh-arrow"></div>
+                </div>
+                <Slider data={state.slideData} />
+                <Column data={state.columnData} />
                 <SortSub />
-                <Promotion />
-                <Brand />
-                <HotSale />
-                <New />
-                <Single />
+                <Brand data={state.brandData} />
+                <HotSale data={state.hotData} />
+                <New data={state.newData} />
+                <Single data={state.singleData} />
             </div>
         );
+    },
+    componentDidMount: function() {
+        var that = this;
+        var ptrContent = $$('#home_content');
+        that.getData();
+        ptrContent.on('refresh', function (e) {
+            that.getData();
+        });
     }
 });
 
 // 广告轮播
 var Slider = React.createClass({
-    getInitialState: function() {
-        return {
-            data: []
-        }
-    },
     render: function() {
-        var dataList = this.state.data.map(function(data, index) {
+        var dataList = this.props.data.map(function(data, index) {
             return (
                 <a className="swiper-slide" href={data.href} key={index}>
                     <img className="swiper-lazy" data-src={data.src} />
@@ -57,35 +88,24 @@ var Slider = React.createClass({
             </div>
         );
     },
-    componentDidMount: function() {
-        var that = this;
-        Unit.ajax({
-            api: 'slider.json'
-        }, function(data) {
-            if (data.status == 1) {
-                that.setState({
-                    data: data.data
-                });
-                F7.swiper('.home-slider-banner', {
-                    loop: true,
-                    lazyLoading: true,
-                    autoplay: data.interval || 0,
-                    pagination : '.home-slider-pagination'
-                });
-            }
-        });
+    componentDidUpdate: function() {
+        if (!window.homeSlider) {
+            window.homeSlider = F7.swiper('.home-slider-banner', {
+                loop: true,
+                lazyLoading: true,
+                autoplay: 5000,
+                pagination : '.home-slider-pagination'
+            });
+        } else {
+            homeSlider.update(true);
+        }
     }
 });
 
 // 分类栏目
-var Sort = React.createClass({
-    getInitialState: function() {
-        return {
-            data: []
-        }
-    },
+var Column = React.createClass({
     render: function() {
-        var dataList = this.state.data.map(function(data, index) {
+        var dataList = this.props.data.map(function(data, index) {
             var children = data.map(function(data, index) {
                 return (
                     <div className="col-25" key={index}>
@@ -113,25 +133,19 @@ var Sort = React.createClass({
             </div>
         );
     },
-    componentDidMount: function() {
-        var that = this;
-        Unit.ajax({
-            api: 'cate.json'
-        }, function(data) {
-            if (data.status == 1) {
-                var pagination = '';
-                var fmtData = Unit.fmtDataArry(data.data, 8);
-                if (fmtData.length > 1) {
-                    pagination = '.home-sort-pagination';
-                }
-                that.setState({
-                    data: fmtData
-                });
-                F7.swiper('.home-slider-sort', {
-                    pagination : pagination
-                });
-            }
-        });
+    componentDidUpdate: function() {
+        var data = this.props.data;
+        var pagination = '';
+        if (data.length > 1) {
+            pagination = '.home-sort-pagination';
+        }
+        if (!window.homeSliderSort) {
+            window.homeSliderSort = F7.swiper('.home-slider-sort', {
+                pagination : pagination
+            });
+        } else {
+            homeSliderSort.update(true);
+        }
     }
 });
 
@@ -154,13 +168,7 @@ var SortSub = React.createClass({
 
 // 促销
 var Promotion = React.createClass({
-    getInitialState: function() {
-        return {
-
-        }
-    },
     render: function() {
-        var date = this.state;
         return (
             <div className="home-box home-box-promotion">
                 <div className="bd">
@@ -246,16 +254,11 @@ var Promotion = React.createClass({
 
 // 品牌专区
 var Brand = React.createClass({
-    getInitialState: function() {
-        return {
-            data: []
-        }
-    },
     render: function() {
         var paddingBottom = {
-            paddingBottom: this.state.data.length > 1 ? '20px': 0
-        }
-        var dataList = this.state.data.map(function(data, index) {
+            paddingBottom: this.props.data.length > 1 ? '20px': 0
+        };
+        var dataList = this.props.data.map(function(data, index) {
             var children = data.map(function(data, index) {
                 return (
                     <li key={index}>
@@ -287,37 +290,34 @@ var Brand = React.createClass({
             </div>
         );
     },
-    componentDidMount: function() {
-        var that = this;
-        Unit.ajax({
-            api: 'home_brand.json'
-        }, function(data) {
-            if (data.status == 1) {
-                var pagination = '';
-                var fmtData = Unit.fmtDataArry(data.data, 12);
-                if (fmtData.length > 1) {
-                    pagination = '.home-brand-pagination';
-                }
-                that.setState({
-                    data: fmtData
-                });
-                F7.swiper('.home-slider-brand', {
-                    pagination : pagination
-                });
-            }
-        });
+    componentDidUpdate: function() {
+        var data = this.props.data;
+        var pagination = '';
+        if (data.length > 1) {
+            pagination = '.home-brand-pagination';
+        }
+        if (!window.homeSlideBrand) {
+            window.homeSlideBrand = F7.swiper('.home-slider-brand', {
+                pagination : pagination
+            });
+        } else {
+            homeSlideBrand.update(true);
+        }
     }
 });
 
 // 热卖
 var HotSale = React.createClass({
-    getInitialState: function() {
-        return {
-
-        }
-    },
     render: function() {
-        var date = this.state;
+        if (this.props.data.length) {
+            var data = this.props.data;
+        } else {
+            var data = [];
+            data[0] = {};
+            data[1] = {};
+            data[2] = {};
+            data[3] = {};
+        }
         return (
             <div className="home-box home-box-promotion">
                 <div className="hd" style={{borderLeft: '4px solid #7f42b3'}}>
@@ -330,21 +330,22 @@ var HotSale = React.createClass({
                         </div>
                         <div className="info">
                             <img src="data/img/cx_1.png" alt=""/>
-                            <p className="name">欧姆龙HEM-7111 臂式电子血压计</p>
+                            <p className="name ell">{data[0].name}</p>
+                            <p className="name ell">{data[0].title}</p>
                         </div>
                         <div className="price">
-                            <span className="old">¥400.00</span>
-                            <span className="new">¥300.00</span>
+                            <span className="old">¥{data[0].oldPrice}</span>
+                            <span className="new">¥{data[0].price}</span>
                         </div>
                     </a>
                     <div className="right" style={{width: '65%'}}>
                         <a className="b1" href="#">
                             <div className="ll1 ml10">
-                                <p>汤臣倍健</p>
-                                <p>蛋白质粉455g</p>
+                                <p>{data[1].name}</p>
+                                <p>{data[1].title}</p>
                                 <div className="price mt10">
-                                    <span className="old">¥400.00</span>
-                                    <span className="new ml10">¥300.00</span>
+                                    <span className="old">¥{data[1].oldPrice}</span>
+                                    <span className="new ml10">¥{data[1].price}</span>
                                 </div>
                             </div>
                             <div className="ll2">
@@ -353,23 +354,23 @@ var HotSale = React.createClass({
                         </a>
                         <div className="b2 b2-e">
                             <a className="ll3" href="#">
-                                <p>
+                                <p className="thumb">
                                     <img src="data/img/hot_2.png"/>
                                 </p>
-                                <p className="ell">爱乐维  复合维生素片</p>
+                                <p className="ell">{data[2].name}  {data[2].title}</p>
                                 <div className="price">
-                                    <span className="old">¥400.00</span>
-                                    <span className="new ml10">¥300.00</span>
+                                    <span className="old">¥{data[2].oldPrice}</span>
+                                    <span className="new ml10">¥{data[2].price}</span>
                                 </div>
                             </a>
                             <a className="ll3" href="#">
-                                <p>
+                                <p className="thumb">
                                     <img src="data/img/hot_2.png"/>
                                 </p>
-                                <p className="ell">爱乐维  维生素</p>
+                                <p className="ell">>{data[3].name}  >{data[3].title}</p>
                                 <div className="price">
-                                    <span className="old">¥400.00</span>
-                                    <span className="new ml10">¥300.00</span>
+                                    <span className="old">¥{data[3].oldPrice}</span>
+                                    <span className="new ml10">¥{data[3].price}</span>
                                 </div>
                             </a>
                         </div>
@@ -377,33 +378,24 @@ var HotSale = React.createClass({
                 </div>
             </div>
         );
-    },
-    componentDidMount: function() {
-        var that = this;
-
     }
 });
 
 // 新品推荐
 var New = React.createClass({
-    getInitialState: function() {
-        return {
-            data: []
-        }
-    },
     render: function() {
-        var dataList = this.state.data.map(function(data, index) {
+        var dataList = this.props.data.map(function(data, index) {
             return (
-                <li className="col-50" key={index}>
+                <li key={index}>
                     <a className="u-item-list" href="view/goods_list.html">
-                        <p className="thump">
-                            <img src="data/img/hot_2.png"/>
+                        <p className="thumb">
+                            <img src={data.src} />
                         </p>
-                        <p>惠氏  钙尔奇  碳酸钙</p>
-                        <p>D3片 600mg*60片 </p>
+                        <p>{data.name}</p>
+                        <p>{data.title}</p>
                         <p className="price">
-                            <span className="old">¥400.00</span>
-                            <span className="new ml10">¥300.00</span>
+                            <span className="old">¥{data.oldPrice}</span>
+                            <span className="new ml10">¥{data.price}</span>
                         </p>
                     </a>
                 </li>
@@ -414,46 +406,29 @@ var New = React.createClass({
                 <div className="hd">
                     <span className="tit"></span>
                 </div>
-                <ul className="row bd">
+                <ul className="bd">
                     {dataList}
                 </ul>
             </div>
         );
-    },
-    componentDidMount: function() {
-        var that = this;
-        Unit.ajax({
-            api: 'new.json'
-        }, function(data) {
-            if (data.status == 1) {
-                that.setState({
-                    data: data.data
-                });
-            }
-        });
     }
 });
 
 // 单品推荐
 var Single = React.createClass({
-    getInitialState: function() {
-        return {
-            data: []
-        }
-    },
     render: function() {
-        var dataList = this.state.data.map(function(data, index) {
+        var dataList = this.props.data.map(function(data, index) {
             return (
-                <li className="col-50" key={index}>
+                <li key={index}>
                     <a className="u-item-list" href="view/goods_list.html">
-                        <p className="thump">
-                            <img src="data/img/hot_2.png"/>
+                        <p className="thumb">
+                            <img src={data.src} />
                         </p>
-                        <p>惠氏  钙尔奇  碳酸钙</p>
-                        <p>D3片 600mg*60片 </p>
+                        <p>{data.name}</p>
+                        <p>{data.title}</p>
                         <p className="price">
-                            <span className="old">¥4100.00</span>
-                            <span className="new ml10">¥300.00</span>
+                            <span className="old">¥{data.oldPrice}</span>
+                            <span className="new ml10">¥{data.price}</span>
                         </p>
                     </a>
                 </li>
@@ -464,23 +439,11 @@ var Single = React.createClass({
                 <div className="hd">
                     <span className="tit tit-single"></span>
                 </div>
-                <ul className="row bd">
+                <ul className="bd">
                     {dataList}
                 </ul>
             </div>
         );
-    },
-    componentDidMount: function() {
-        var that = this;
-        Unit.ajax({
-            api: 'new.json'
-        }, function(data) {
-            if (data.status == 1) {
-                that.setState({
-                    data: data.data
-                });
-            }
-        });
     }
 });
 

@@ -32,7 +32,7 @@ var CateContent = React.createClass({
     getSubData: function(id) {
         var that = this;
         Unit.ajax({
-            api: 'sub_cate.json',
+            api: 'sub_cate',
             params: {
                 id: id
             }
@@ -61,7 +61,6 @@ var CateContent = React.createClass({
             <div className="cate-content flex">
                 <div className="cate-list">
                     <ul>
-                        <li>医保用药</li>
                         {dataList}
                     </ul>
                 </div>
@@ -72,7 +71,7 @@ var CateContent = React.createClass({
     componentDidMount: function() {
         var that = this;
         Unit.ajax({
-            api: 'cate.json'
+            api: 'cate'
         }, function(data) {
             if (data.status == 1) {
                 var dataList = data.data;

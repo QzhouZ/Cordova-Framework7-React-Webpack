@@ -38,7 +38,7 @@ var Goods = React.createClass({
         var subCateId = $$("#goods_cate").attr('data-subcateid');
         var sortType = $$("#goods_sort").attr('data-sort');
         Unit.ajax({
-            api: 'new.json',
+            api: 'new',
             params: {
                 cateId: cateId,
                 subCateId: subCateId,
@@ -56,7 +56,7 @@ var Goods = React.createClass({
         var dataList = this.state.data.map(function(data, index) {
             return (
                 <li key={index}>
-                    <a className="u-item-list" href="view/goods_details.html">
+                    <a className="u-item-list" href="view/goods_details.html?id=1">
                         <div className="thumb">
                             <img src={data.src} />
                         </div>
@@ -142,21 +142,17 @@ var Filter = React.createClass({
         this.props.closeModal();
     },
     render: function() {
-        var filterList = '';
-        if (this.state.type == 'cate') {
-            filterList = <CateList chooseFilterItem={this.chooseFilterItem} subCateId={this.state.subCateId} />;
-        } else if (this.state.type == 'sort') {
-            filterList = <SortList chooseFilterItem={this.chooseFilterItem} type={this.state.sortType} />;
-        }
         return (
             <div className="modal-content-custom">
-                {filterList}
+                <CateList chooseFilterItem={this.chooseFilterItem} subCateId={this.state.subCateId} />
+                <SortList chooseFilterItem={this.chooseFilterItem} type={this.state.sortType} />
             </div>
         );
     },
     componentDidMount: function() {
         var that = this;
         $$('#goods_filter_bar .item').on('click', function() {
+            var index = $$(this).index();
             var type = $$(this).data('type');
             var className = $$('.modal-overlay-c').attr('class');
             var isOpen = /modal-in/.test(className);
@@ -165,6 +161,13 @@ var Filter = React.createClass({
             });
             if (!isOpen) {
                 $$('.modal-overlay-c,.modal-content-custom').addClass('modal-in');
+            }
+            if (index == 0) {
+                $$('.modal-cate-list').show();
+                $$('.modal-filter-list').hide();
+            } else {
+                $$('.modal-cate-list').hide();
+                $$('.modal-filter-list').show();
             }
         });
     }
@@ -201,7 +204,7 @@ var CateList = React.createClass({
     getSubData: function(id) {
         var that = this;
         Unit.ajax({
-            api: 'sub_cate.json',
+            api: 'sub_cate',
             params: {
                 id: id
             }
@@ -239,7 +242,7 @@ var CateList = React.createClass({
     componentDidMount: function() {
         var that = this;
         Unit.ajax({
-            api: 'cate.json'
+            api: 'cate'
         }, function(data) {
             if (data.status == 1) {
                 var dataList = data.data;
@@ -323,12 +326,6 @@ var SortList = React.createClass({
         );
     }
 });
-// 加载快速菜单
-var QuickMenu = require('view/quick_menu');
-React.render(
-    <QuickMenu />,
-    document.getElementById('quick_menu_content')
-);
 
 module.exports = PageContent;
 
