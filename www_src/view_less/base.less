@@ -3,7 +3,7 @@
  * CreateDate: 2015-10-26
  */
 
-
+@color: #1295ea;
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -14,6 +14,9 @@
 p {
     margin: 0;
 }
+a {
+    color: #fff;
+}
 html {
     font-size: 20px;
 }
@@ -22,7 +25,9 @@ html {
         font-size: 19px !important;
     }
 }
-@color: #1295ea;
+body {
+    font-size:.85rem;
+}
 input {
     border: none;
 }
@@ -133,12 +138,6 @@ input {
     background-color: #fff;
 }
 
-
-
-.navbar-inner, .toolbar-inner {
-    padding: 0 15px;
-}
-
 .navbar-search-input {
     display: block;
     height: 29px;
@@ -179,13 +178,22 @@ input {
 .icon-me {
     background-image: url(img/me.png);
 }
-.footer-bar {
+.toolbar {
     text-align: center;
+    .position-badge  {
+        top: 2px;
+    }
     .tab-item {
         position: relative;
     }
 }
-.footer-bar .toolbar-inner .tab-item.active, .footer-bar .toolbar-inner .tab-item:active {
+.footer-bar {
+    .tab-item {
+        width: 70px;
+    }
+}
+.footer-bar .toolbar-inner .tab-item.active,
+.footer-bar .toolbar-inner .tab-item:active {
     color: #1296eb;
     .icon-home {
         background-image: url(img/home_active.png);
@@ -379,9 +387,4 @@ input {
     text-align: center;
     font-size: 12px;
     line-height: 16px;
-}
-.footer-bar {
-    .position-badge  {
-        top: 2px;
-    }
 }

@@ -6,21 +6,31 @@ var pageContent = React.createClass({
         return {
             data: [{
                 name: '首页',
-                href: '#home',
+                href: 'home',
                 icon: 'icon-home'
             },{
                 name: '分类',
-                href: '#cate',
+                href: 'cate',
                 icon: 'icon-cate'
             },{
                 name: '预购篮',
-                href: '#cart',
+                href: 'cart',
                 icon: 'icon-cart'
             },{
                 name: '我的',
-                href: '#ucenter',
+                href: 'ucenter',
                 icon: 'icon-me'
             }]
+        }
+    },
+    load: function(href) {
+        var url = mainView.url;
+        if (url.indexOf(href) == -1) {
+            $$(".page").addClass('cached'); //切换前先隐藏页面，可以减少DOM回流和重绘，提高性能
+            mainView.router.load({
+                pageName: href,
+                animatePages: false
+            });
         }
     },
     render: function() {
@@ -36,7 +46,7 @@ var pageContent = React.createClass({
                 badge = <div className="badge position-badge">1</div>;
             }
             return (
-                <a className={tabClassName} href={data.href} data-animate-pages="false" key={index}>
+                <a className={tabClassName} href="#" key={index} onClick={that.load.bind(null, data.href)}>
                     <span className={iconName}></span>
                     <span className="tab-label">{data.name}</span>
                     {badge}

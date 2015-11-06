@@ -23,9 +23,6 @@ window.F7 = new Framework7({
 
 $$(document).on('pageAfterAnimation', function (e) {
     var page = e.detail.page;
-    /*if ($$(page.container).find('.page-content').text() != '') {
-        return false;
-    }*/
     loadComponent(page.name, page.query);
 });
 
@@ -34,12 +31,14 @@ window.mainView = F7.addView('.view-main', {
     dynamicNavbar: false,
     domCache: true
 });
+$$(document).on('ajaxStart', function () {
+    //F7.showIndicator();
+});
 $$(document).on('ajaxComplete', function () {
     F7.hideIndicator();
     F7.pullToRefreshDone();
 });
 initPage();
-
 /**
  * 加载页面组件
  * @param page 页面名称
@@ -51,7 +50,6 @@ function loadComponent(page, query) {
         document.getElementById(page + '_content')
     );
 }
-
 // 初始化起始页
 function initPage() {
     loadComponent('home');
@@ -62,7 +60,6 @@ function initPage() {
         initFooterBar(id, index);
     });
 }
-
 // 初始化底部导航
 function initFooterBar(footId, index) {
     React.render(
@@ -70,7 +67,6 @@ function initFooterBar(footId, index) {
         document.getElementById(footId)
     );
 }
-
 // android
 if (F7.device.android) {
     // 物理返回键事件

@@ -32,15 +32,13 @@
     }
 }
 .home-sort {
-    padding: 0 10px 0;
+    padding: 0 10px;
     background-color: #fff;
-    min-height: 190px;
+    height: 190px;
     .row {
         padding-bottom: 10px;
     }
     .col-25 {
-        padding-left: .25rem;
-        padding-right: .25rem;
         margin-top: .5rem;
         text-align: center;
         img {
@@ -903,4 +901,75 @@
 }
 .cart-navbar-fixed .page-content {
     padding-bottom: 119px;
+}
+
+/* #Symptom
+=============================== */
+.symptom-navbar-fixed .page-content {
+    padding-top: 81px;
+}
+.symptom-sub-navBar {
+    padding: 0;
+    height: 38px;
+    line-height: 38px;
+    background-color: #f9f9f9;
+    .tab-list {
+        width: 100%;
+        font-size: .75rem;
+        text-align: center;
+        .tab-link {
+            color: #757575;
+            border-left: 1px solid #ddd;
+            &:first-child {
+                border: none;
+            }
+        }
+        .line {
+            border-left: 1px solid #ddd;
+            margin-left: .8rem;
+            margin-right: .8rem;
+        }
+        .active {
+            background-color: #fff;
+            color: #1296eb;
+        }
+    }
+    .subnavbar:after {
+        background-color: #fff;
+    }
+}
+.symptom-tab {
+    height: 100%;
+    .tabs, .tab {
+        height: 100%;
+    }
+    .cate-list {
+        width: 35%;
+    }
+    .cate-list li {
+        line-height: normal;
+        height: 5.5rem;
+        font-size: .7rem;
+        color: #757575;
+        img {
+            width: 55px;
+            margin-top: .8rem;
+            margin-bottom: .5rem;
+        }
+    }
+    .cate-list-item {
+        padding-left: .7rem;
+    }
+    .cate-list li.active {
+        border-left: none;
+    }
+    .list-block {
+        margin: 0;
+    }
+    .list-block ul:before {
+        background-color: #fff;
+    }
+    .list-block .item-link .item-inner {
+        background-image: none;
+    }
 }

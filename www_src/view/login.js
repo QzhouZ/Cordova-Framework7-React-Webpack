@@ -8,6 +8,11 @@ var React = require('react');
 var Unit = require('lib/unit');
 
 var LoginContent = React.createClass({
+    getInitialState: function() {
+        return {
+            switchState: 1
+        }
+    },
 	login: function() {
         var that = this;
 		var user = this.refs.user.getDOMNode().value;
@@ -31,16 +36,19 @@ var LoginContent = React.createClass({
         });
 	},
     switch: function() {
-        var domname=$$("#pass_switch").attr("class");
-        if(domname == "state-img"){
-            $$("#pass_switch").addClass("active");
-            $$("#password").attr("type","password");
-        }else{
-            $$("#pass_switch").removeClass("active");
-            $$("#password").attr("type","text");
-        }
+        var state = this.state.switchState;
+        this.setState({
+            switchState: !state
+        });
     },
 	render: function () {
+        var state = this.state.switchState;
+        var switchClass = 'state-img ';
+        var passwordType = 'text';
+        if (!state) {
+            switchClass += 'active';
+            passwordType = 'password';
+        }
         return (
             <div className="login-content">
             	<div className="ucenter-top">
@@ -56,8 +64,8 @@ var LoginContent = React.createClass({
                     </div>
                     <div className="login-up-sbox">
                         <label className="fix">
-                            <input id="password" className="password" type="text" placeholder="输入您的密码" ref="password" />
-                            <div className="pwimgbox"><span id="pass_switch" className="state-img" onClick={this.switch}></span></div>
+                            <input id="password" className="password" type={passwordType} placeholder="输入您的密码" ref="password" />
+                            <div className="pwimgbox"><span  className={switchClass} onClick={this.switch}></span></div>
                         </label>
                     </div>
                 </div>
@@ -66,7 +74,7 @@ var LoginContent = React.createClass({
                 </div>
                 <div className="login-link fix">
                     <span ><a href="view/register.html" className="lfbox">注册</a></span>
-                    <span ><a href="#" className="lrbox">找回密码</a></span>
+                    <span ><a href="view/password_back.html" className="lrbox">找回密码</a></span>
                 </div>
             </div>
         );

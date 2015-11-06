@@ -155,7 +155,7 @@ var SortSub = React.createClass({
         return (
             <div className="home-sort-sub">
                 <div className="row">
-                    <a className="col-20 active" href="#">按症找药</a>
+                    <a className="col-20 active" href="view/symptom.html">按症找药</a>
                     <a className="col-20" href="#">男性</a>
                     <a className="col-20" href="#">女性</a>
                     <a className="col-20" href="#">老人</a>
