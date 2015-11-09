@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node ./server.js",
         "build": "rm -rf www/js/* && webpack --config webpack.prod.config.js && cordova run",
-        "release": "rm -rf www/js/* && webpack --config webpack.prod.config.js -p",
+        "release": "rm -rf www/js/* && webpack --config webpack.prod.config.js -p && cordova build",
         "watch": "webpack --config webpack.dev.config.js -w"
     },
     "author": "448482356@qq.com",
