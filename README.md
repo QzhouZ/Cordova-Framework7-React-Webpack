@@ -41,7 +41,7 @@
 
 ## 相关命令
 
-- ``npm run test``真机同步测试，只支持Android，需要连上安卓手机
+- ``npm run test``真机同步测试，只支持Android，需要连上Android手机
 - ``npm run android``Android打包
 - ``npm run ios``IOS打包
 
