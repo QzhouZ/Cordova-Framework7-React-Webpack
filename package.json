@@ -1,23 +1,29 @@
 {
-    "name": "test",
+    "name": "APP",
     "version": "0.0.1",
-    "description": "test",
+    "description": "APP Dev",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node ./server.js",
-        "build": "rm -rf www/js/* && webpack --config webpack.prod.config.js && cordova run",
-        "release": "rm -rf www/js/* && webpack --config webpack.prod.config.js -p && cordova build",
+        "test": "rm -rf www/build/* && webpack --config webpack.prod.config.js && cordova run android",
+        "build": "rm -rf www/build/* && webpack --config webpack.prod.config.js -p && mv www/src ./",
+        "android":  "npm run build && cordova build android && mv ./src www/",
+        "ios": "npm run build && cordova build ios -device && mv ./src www/",
         "watch": "webpack --config webpack.dev.config.js -w"
     },
     "author": "448482356@qq.com",
     "license": "ISC",
     "devDependencies": {
-        "babel-loader": "*",
+        "babel-loader": "^6.2.0",
+        "css-loader": "^0.23.0",
+        "extract-text-webpack-plugin": "^0.9.1",
         "html-webpack-plugin": "^1.6.1",
+        "less-loader": "^2.2.2",
         "moment": "^2.10.6",
         "react": "^0.13.3",
         "react-hot-loader": "^1.3.0",
+        "style-loader": "^0.13.0",
+        "url-loader": "^0.5.7",
         "webpack": "^1.12.2",
         "webpack-dev-server": "^1.11.0"
     }

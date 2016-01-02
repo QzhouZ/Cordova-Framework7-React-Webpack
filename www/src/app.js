@@ -7,7 +7,7 @@
 var React = require('react');
 var Unit = require('lib/unit');
 var FooterBar = require('view/footer_bar');
-
+require('./app.less');
 window.$$ = Framework7.$;
 
 // 实例化

@@ -1,30 +1,36 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = function(options) {
     var config = {
         entry: [
-            './www_src/app.js'
+            './www/src/app.js'
         ],
         output: {
-            path: path.join(__dirname, 'www/js'),
+            path: path.join(__dirname, 'www/build'),
             filename: 'bundle.js',
-            publicPath: './js/'
+            publicPath: './build/'
         },
         module: {
             loaders: [{
                 test: /\.jsx?$/,
                 loaders: ['babel'],
                 exclude: /node_modules/
+            },{
+              test: /\.less$/,
+              loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            }, {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?limit=8192'
             }],
             noParse: [/moment-with-locales/]
         },
         resolve: {
             extensions: ['', '.js', '.jsx', '.json', '.coffee'],
             alias: {
-                lib: path.join(__dirname, "./www_src/lib"),
-                view: path.join(__dirname, "./www_src/view"),
+                lib: path.join(__dirname, "./www/lib"),
+                view: path.join(__dirname, "./www/src/view"),
                 moment: "moment/min/moment-with-locales.min.js"
             }
         }
@@ -39,11 +45,16 @@ module.exports = function(options) {
             'webpack/hot/only-dev-server'
         );
         config.plugins = [
+            new ExtractTextPlugin("app.css"),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin()
         ];
-        config.output.publicPath = '/www/js/';
+        config.output.publicPath = '/www/build/';
         config.module.loaders[0].loaders.unshift('react-hot');
+    } else {
+        config.plugins = [
+            new ExtractTextPlugin("app.css")
+        ];
     }
     return config;
 };
