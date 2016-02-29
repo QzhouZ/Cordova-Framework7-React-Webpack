@@ -29,7 +29,7 @@
 ```
 
 ## 开发环境
-需要安装Node、Cordova、NPM、Webpack
+需要安装Node、Cordova、NPM、Babel5、Webpack
 
 ## 安装npm插件
 ``npm install``
