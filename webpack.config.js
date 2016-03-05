@@ -15,12 +15,15 @@ module.exports = function(options) {
         module: {
             loaders: [{
                 test: /\.jsx?$/,
-                loaders: ['babel'],
+                loader: 'babel',
+                query: {
+                    presets: ['es2015', 'react']
+                },
                 exclude: /node_modules/
             },{
               test: /\.less$/,
               loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-            }, {
+            },{
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader?limit=8192'
             }],
@@ -50,7 +53,12 @@ module.exports = function(options) {
             new webpack.NoErrorsPlugin()
         ];
         config.output.publicPath = '/www/build/';
-        config.module.loaders[0].loaders.unshift('react-hot');
+        // config.module.loaders[0].loaders.unshift('react-hot');
+        config.module.loaders.unshift({
+            test: /\.jsx?$/,
+            loader: 'react-hot',
+            exclude: /node_modules/
+        });
     } else {
         config.plugins = [
             new ExtractTextPlugin("app.css")

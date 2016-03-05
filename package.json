@@ -7,14 +7,17 @@
         "start": "node ./server.js",
         "test": "rm -rf www/build/* && webpack --config webpack.prod.config.js && cordova run android",
         "build": "rm -rf www/build/* && webpack --config webpack.prod.config.js -p && mv www/src ./",
-        "android":  "npm run build && cordova build android && mv ./src www/",
+        "android": "npm run build && cordova build android && mv ./src www/",
         "ios": "npm run build && cordova build ios -device && mv ./src www/",
         "watch": "webpack --config webpack.dev.config.js -w"
     },
     "author": "448482356@qq.com",
     "license": "ISC",
-    "devDependencies": {
+    "dependencies": {
+        "babel-core": "^6.4.5",
         "babel-loader": "^6.2.0",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
         "css-loader": "^0.23.0",
         "extract-text-webpack-plugin": "^0.9.1",
         "html-webpack-plugin": "^1.6.1",
