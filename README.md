@@ -30,7 +30,7 @@
 
 ## 开发环境
 
-安装Node和NPM，新版本NODE已经继承NPM 
+安装Node和NPM，新版本NODE已经继承NPM   
 安装Cordova [http://cordova.apache.org/](http://cordova.apache.org/)  
 安装Webpack ``npm install webpack -g``  [http://webpack.github.io/](http://webpack.github.io/)  
 安装Babel ``npm install --global babel-cli``
