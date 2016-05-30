@@ -1,7 +1,6 @@
 {
     "name": "APP",
-    "version": "0.0.1",
-    "description": "APP Dev",
+    "version": "1.0",
     "main": "app.js",
     "scripts": {
         "start": "node ./server.js",
@@ -11,7 +10,7 @@
         "ios": "npm run build && cordova build ios -device && mv ./src www/",
         "watch": "rm -rf www/build/* && webpack --config webpack.prod.config.js -w"
     },
-    "author": "448482356@qq.com",
+    "author": "Zane 448482356@qq.com",
     "license": "ISC",
     "dependencies": {
         "babel-core": "^6.4.5",
