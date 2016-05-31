@@ -120,6 +120,12 @@ var Goods = React.createClass({
 
 
 
-module.exports = PageContent;
+module.exports = {
+    navbar: `<div class="left">
+        <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
+        </div>
+        <div class="center sliding">商品列表</div>`,
+    content: PageContent
+};
 
 

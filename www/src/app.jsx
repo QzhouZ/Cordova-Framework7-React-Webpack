@@ -8,8 +8,6 @@ import "./style/base";
 import "./style/view_1";
 import "./style/view_2";
 
-import Home from 'view/home';
-
 window.$$ = Framework7.$;
 
 // 实例化
@@ -27,14 +25,15 @@ window.mainView = F7.addView('.view-main', {
     dynamicNavbar: true,
     domCache: true
 });
+
 $$(document).on('ajaxStart', function () {
     //F7.showIndicator();
 });
+
 $$(document).on('ajaxComplete', function () {
     F7.hideIndicator();
     F7.pullToRefreshDone();
 });
-
 
 $$(document).on('click', 'a[data-page]', function(e) {
     var link = $$(e.target);
@@ -42,7 +41,17 @@ $$(document).on('click', 'a[data-page]', function(e) {
         link = link.parents('a[data-page]');
     }
     var page = link.attr('data-page');
-    var query = link.attr('data-query');
+    var query = link.data('query');
+    // 将参数重组成字面量对象
+    if (query) {
+        var queryArr = query.split('&');
+        var q = {};
+        for (var k in queryArr) {
+            var qArr = queryArr[k].split('=');
+            q[qArr[0]] = qArr[1];
+        }
+        query = q;
+    }
     var view = link.attr('data-view');
     var container;
     if (view) {
@@ -62,23 +71,23 @@ $$(document).on('click', 'a[data-page]', function(e) {
 
 $$(document).on('pageBeforeInit', function(e) {
     var page = e.detail.page;
-    $$(page.navbarInnerContainer).html(
-        '<div class="left">' +
-        '<a href="#" class="back link"><i class="icon icon-back-white"></i><span>返回</span></a>' +
-        '</div>' +
-        '<div class="center sliding">Settings</div>'
-    );
+    var navbar = require('view/' + page.name).navbar;
+    $$(page.navbarInnerContainer).html(navbar);
 
 });
+
 $$(document).on('pageAfterAnimation', function(e) {
     var page = e.detail.page;
-    var Component = require('view/' + page.name);
+    var Content = require('view/' + page.name).content;
     ReactDOM.render( 
-        <Component query={page.query} />,
+        <Content query={page.query} />,
         page.container
     );
 });
+
+
+let Home = require('view/home').content;
 ReactDOM.render( 
-    <Home / > ,
-    document.getElementById('home')
+    <Home /> ,
+    document.getElementById('init_page')
 );

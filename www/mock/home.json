@@ -166,14 +166,14 @@
             "title": "复合维生素片",
             "oldPrice": "600.00",
             "price": "300.00",
-            "src": "mock/img/b1.jpg"
+            "src": "mock/img/hot_1.png"
         },{
             "id": 4,
             "name": "爱乐维",
             "title": "复合维生素片",
             "oldPrice": "600.00",
             "price": "300.00",
-            "src": "mock/img/b1.jpg"
+            "src": "mock/img/hot_2.png"
         }]
     }
 }
