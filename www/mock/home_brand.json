@@ -1,0 +1,43 @@
+{
+	"status": 1,
+	"data": [{
+          "id": 1,
+          "src": "mock/img/brand_1.png"
+      },{
+          "id": 2,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+          "id": 3,
+          "src": "mock/img/brand_2.png"
+      },{
+      "id": 3,
+      "src": "mock/img/brand_2.png"
+    }]
+}

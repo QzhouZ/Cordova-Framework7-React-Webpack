@@ -5,93 +5,39 @@
     <meta charset="utf-8">
     <title>APP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="lib/framework7/framework7.ios.css">
-    <link rel="stylesheet" href="lib/framework7/framework7.ios.colors.css">
-    <link rel="stylesheet" href="fonts/font-awesome.css">
-    <link rel="stylesheet" href="build/app.css">
+    <link rel="stylesheet" href="libs/framework7/css/framework7.ios.css">
+    <link rel="stylesheet" href="libs/framework7/css/framework7.ios.colors.css">
+    <link rel="stylesheet" href="dist/css/app.css">
     <script src="cordova.js"></script>
 </head>
+
 <body>
     <div class="statusbar-overlay" style="background: #2b793e;"></div>
     <div class="views">
         <div class="view view-main">
-            <div class="pages">
-                <div data-page="home" class="page navbar-fixed toolbar-fixed">
-                    <div class="navbar search-header">
-                        <div class="navbar-inner">
-                            <div class="left">
-                                <a class="link flex flex-center">
-                                    <i class="fa fa-angle-right"></i>
-                                    <span>收货地址</span>
-                                </a>
-                            </div>
-                            <a class="center sliding" href="view/search.html">
-                                <input class="navbar-search-input" type="search" name="wd" placeholder="搜索商品" readonly />
-                            </a>
-                            <div class="right">
-                                <a class="link flex flex-center">
-                                   <img src="img/scan.png" style="width: 1.3rem;" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="home_content" class="page-content pull-to-refresh-content">
-
-                    </div>
-                    <div id="home_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left"></div>
+                    <div class="center sliding">首页</div>
+                    <div class="right"></div>
                 </div>
-                <div data-page="cate" class="page navbar-fixed toolbar-fixed cached">
-                    <div class="navbar search-header">
-                        <div class="navbar-inner">
-                            <div class="left">
-                                <a class="link flex flex-center">
-                                    <i class="fa fa-angle-right"></i>
-                                    <span>收货地址</span>
-                                </a>
-                            </div>
-                            <a class="center sliding" href="view/search.html">
-                                <input class="navbar-search-input" type="search" name="wd" placeholder="搜索商品" readonly />
-                            </a>
-                            <div class="right">
-                                <a class="link flex flex-center">
-                                    <img src="img/scan.png" style="width: 1.3rem;" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="cate_content" class="page-content">
+            </div>
 
-                    </div>
-                    <div id="cate_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
+            <div class="pages navbar-through toolbar-through">
+                <div data-page="home" class="page" id="home">
                 </div>
-                <div data-page="cart" class="page navbar-fixed toolbar-fixed cached">
-                    <div class="navbar home-header">
-                        <div class="navbar-inner">
-                            <div class="center sliding">
-                                购物车
-                            </div>
-                        </div>
-                    </div>
-                    <div id="cart_content" class="page-content">
-
-                    </div>
-                    <div id="cart_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
-                </div>
-                <div data-page="ucenter" class="page toolbar-fixed cached">
-                    <div id="ucenter_content" class="page-content">
-
-                    </div>
-                    <div id="ucnter_footer" class="toolbar tabbar tabbar-labels footer-bar"></div>
+            </div>
+            <!-- Bottom Toolbar-->
+            <div class="toolbar">
+                <div class="toolbar-inner">
+                    Hello
                 </div>
             </div>
         </div>
     </div>
-    <div class="popover popover-quick-menu">
-        <div class="popover-angle"></div>
-        <div class="popover-inner" id="quick_menu_content">
-        </div>
-    </div>
-    <script src="lib/framework7/framework7.js"></script>
-    <script src="build/bundle.js"></script>
+    <script src="libs/framework7/js/framework7.js"></script>
+    <script src="dist/js/bundle.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,29 @@
+{
+    "status": 1,
+    "data": [{
+        "id": 1,
+        "name": "皮肤科",
+        "icon": "img/pfk.png",
+        "iconActive": "img/pfk_active.png"
+    },{
+        "id": 2,
+        "name": "性病科",
+        "icon": "img/xbk.png",
+        "iconActive": "img/xbk_active.png"
+    },{
+        "id": 3,
+        "name": "呼吸内科",
+        "icon": "img/hxnk.png",
+        "iconActive": "img/hxnk_active.png"
+    },{
+        "id": 4,
+        "name": "消化内科",
+        "icon": "img/xhnk.png",
+        "iconActive": "img/xhnk_active.png"
+    },{
+        "id": 5,
+        "name": "内分泌代谢科",
+        "icon": "img/nfmk.png",
+        "iconActive": "img/nfmk_active.png"
+    }]
+}

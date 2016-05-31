@@ -1,0 +1,996 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
+body {
+    color: #333;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+hr {
+    height: 1px;
+    background: #e1e1e1;
+    border: none;
+    border-bottom: 1px solid #f9f9f9;
+}
+i, em {
+    font-style: normal;
+}
+/* Backgrounds */
+
+.bg-navy {
+    background-color: #001f3f;
+}
+.bg-blue {
+    background-color: #0074d9;
+}
+.bg-aqua {
+    background-color: #7fdbff;
+}
+.bg-teal {
+    background-color: #39cccc;
+}
+.bg-olive {
+    background-color: #3d9970;
+}
+.bg-green {
+    background-color: #2ecc40;
+}
+.bg-lime {
+    background-color: #01ff70;
+}
+.bg-yellow {
+    background-color: #ffdc00;
+}
+.bg-orange {
+    background-color: #ff851b;
+}
+.bg-red {
+    background-color: #ff4136;
+}
+.bg-fuchsia {
+    background-color: #f012be;
+}
+.bg-purple {
+    background-color: #b10dc9;
+}
+.bg-maroon {
+    background-color: #85144b;
+}
+.bg-white {
+    background-color: #ffffff;
+}
+.bg-gray {
+    background-color: #aaaaaa;
+}
+.bg-silver {
+    background-color: #dddddd;
+}
+.bg-black {
+    background-color: #111111;
+}
+.bg-f1 {
+    background: #f1f1f1;
+}
+/* Colors */
+
+.navy {
+    color: #001f3f;
+}
+.blue {
+    color: #0074d9;
+}
+.aqua {
+    color: #7fdbff;
+}
+.teal {
+    color: #39cccc;
+}
+.olive {
+    color: #3d9970;
+}
+.green {
+    color: #2ecc40;
+}
+.lime {
+    color: #01ff70;
+}
+.yellow {
+    color: #ffdc00;
+}
+.orange {
+    color: #ff851b;
+}
+.red {
+    color: #ff4136;
+}
+.fuchsia {
+    color: #f012be;
+}
+.purple {
+    color: #b10dc9;
+}
+.maroon {
+    color: #85144b;
+}
+.white {
+    color: #ffffff;
+}
+.silver {
+    color: #dddddd;
+}
+.gray {
+    color: #aaaaaa;
+}
+.black {
+    color: #111111;
+}
+.muted {
+    color: #999999;
+}
+.hide-txt {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+/* ---------------------single CSS----------------------- */
+
+/* display */
+
+.dn {
+    display: none;
+}
+.di {
+    display: inline;
+}
+.db {
+    display: block;
+}
+.dib {
+    display: inline-block;
+}
+/* if the element is block level(eg. div, li),
+/* percent width value */
+
+.pct10 {
+    width: 10%;
+}
+.pct15 {
+    width: 15%;
+}
+.pct20 {
+    width: 20%;
+}
+.pct25 {
+    width: 25%;
+}
+.pct30 {
+    width: 30%;
+}
+.pct33 {
+    width: 33.3%;
+}
+.pct40 {
+    width: 40%;
+}
+.pct50 {
+    width: 50%;
+}
+.pct60 {
+    width: 60%;
+}
+.pct66 {
+    width: 66.6%;
+}
+.pct70 {
+    width: 70%;
+}
+.pct75 {
+    width: 75%;
+}
+.pct80 {
+    width: 80%;
+}
+.pct90 {
+    width: 90%;
+}
+.pct100 {
+    width: 100%;
+}
+/* margin */
+
+.m0 {
+    margin: 0;
+}
+.m5 {
+    margin: 5px;
+}
+.m10 {
+    margin: 10px;
+}
+.m15 {
+    margin: 15px;
+}
+.m20 {
+    margin: 20px;
+}
+.ml0 {
+    margin-left: 0;
+}
+.ml5 {
+    margin-left: 5px;
+}
+.ml10 {
+    margin-left: 10px;
+}
+.ml15 {
+    margin-left: 15px;
+}
+.ml20 {
+    margin-left: 20px;
+}
+.ml30 {
+    margin-left: 30px;
+}
+.mr0 {
+    margin-right: 0;
+}
+.mr5 {
+    margin-right: 5px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mr15 {
+    margin-right: 15px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.mt0 {
+    margin-top: 0;
+}
+.mt5 {
+    margin-top: 5px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.mt15 {
+    margin-top: 15px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+.mt30 {
+    margin-top: 30px;
+}
+.mt40 {
+    margin-top: 40px;
+}
+.mt50 {
+    margin-top: 50px;
+}
+.mb0 {
+    margin-bottom: 0;
+}
+.mb5 {
+    margin-bottom: 5px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.mb15 {
+    margin-bottom: 15px;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+.mb30 {
+    margin-bottom: 30px;
+}
+.mb40 {
+    margin-bottom: 40px;
+}
+.mb50 {
+    margin-bottom: 50px;
+}
+/* margin negative */
+
+/* padding */
+
+.p0 {
+    padding: 0;
+}
+.p5{
+    padding: 5px;
+}
+.pl5 {
+    padding-left: 5px;
+}
+.pt5 {
+    padding-top: 5px;
+}
+.pr5 {
+    padding-right: 5px;
+}
+.pb5 {
+    padding-bottom: 5px;
+}
+.p10 {
+    padding: 10px;
+}
+.pl10 {
+    padding-left: 10px;
+}
+.pt10 {
+    padding-top: 10px;
+}
+.pr10 {
+    padding-right: 10px;
+}
+.pb10 {
+    padding-bottom: 10px;
+}
+.p15 {
+    padding: 15px;
+}
+.pl15 {
+    padding-left: 15px;
+}
+.pt15 {
+    padding-top: 15px;
+}
+.pr15 {
+    padding-right: 15px;
+}
+.pb15 {
+    padding-bottom: 15px;
+}
+.p20 {
+    padding: 20px;
+}
+.pl20 {
+    padding-left: 20px;
+}
+.pt20 {
+    padding-top: 20px;
+}
+.pr20 {
+    padding-right: 20px;
+}
+.pb20 {
+    padding-bottom: 20px;
+}
+.p30 {
+    padding: 30px;
+}
+.pl30 {
+    padding-left: 30px;
+}
+.pt30 {
+    padding-top: 30px;
+}
+.pr30 {
+    padding-right: 30px;
+}
+.pb30 {
+    padding-bottom: 30px;
+}
+.bdc {
+    border: 1px solid #ccc;
+}
+.blc {
+    border-left: 1px solid #ccc;
+}
+.brc {
+    border-right: 1px solid #ccc;
+}
+.btc {
+    border-top: 1px solid #ccc;
+}
+.bbc {
+    border-bottom: 1px solid #ccc;
+}
+.bdd {
+    border: 1px solid #ddd;
+}
+.bld {
+    border-left: 1px solid #ddd;
+}
+.brd {
+    border-right: 1px solid #ddd;
+}
+.btd {
+    border-top: 1px solid #ddd;
+}
+.bbd {
+    border-bottom: 1px solid #ddd;
+}
+.bde {
+    border: 1px solid #eee;
+}
+.ble {
+    border-left: 1px solid #eee;
+}
+.bre {
+    border-right: 1px solid #eee;
+}
+.bte {
+    border-top: 1px solid #eee;
+}
+.bbe {
+    border-bottom: 1px solid #eee;
+}
+/* background-color name rule:  bg - (key word/Hex color) |-> All colors are safe color */
+
+.bgfb {
+    background-color: #fbfbfb;
+}
+.bgf5 {
+    background-color: #f5f5f5;
+}
+.bgf0 {
+    background-color: #f0f0f0;
+}
+.bgeb {
+    background-color: #ebebeb;
+}
+.bge0 {
+    background-color: #e0e0e0;
+}
+/* safe color */
+
+.g0 {
+    color: #000;
+}
+.g3 {
+    color: #333;
+}
+.g6 {
+    color: #666;
+}
+.g9 {
+    color: #999;
+}
+.gc {
+    color: #ccc;
+}
+/* font-size */
+
+.f0 { font-size: 0; }
+.f12 { font-size: 12px; }
+.f14 { font-size: 14px; }
+.f16 { font-size: 16px; }
+.f18 { font-size: 18px; }
+.f20 { font-size: 20px; }
+.f24 { font-size: 24px; }
+.n { font-weight: normal; font-style: normal; }
+.b { font-weight: bold; }
+.i { font-style: italic; }
+/* text-align */
+.tc { text-align: center; }
+.tr { text-align: right; }
+.tl { text-align: left; }
+.tj { text-align: justify; }
+/* text-decoration */
+.tdl { text-decoration: underline; }
+.tdn, .tdn:hover, .tdn a:hover, a.tdl:hover { text-decoration: none; }
+/* text-shadow */
+
+.txt-sdw {
+    text-shadow: 0 1px 0 #fff;
+}
+/* white-space */
+
+.nowrap {
+    white-space: nowrap;
+}
+/* word-wrap */
+
+.bk {
+    word-wrap: break-word;
+}
+/* vertical-align */
+
+.vm {
+    vertical-align: middle;
+}
+.vtb {
+    vertical-align: text-bottom;
+}
+.vb {
+    vertical-align: bottom;
+}
+.vt {
+    vertical-align: top;
+}
+.vn {
+    vertical-align: -2px;
+}
+/* position */
+
+.rel {
+    position: relative;
+}
+.abs {
+    position: absolute;
+}
+.fixed {
+    position: fixed;
+}
+/* float */
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+/* clear */
+
+.cl {
+    clear: both;
+}
+/* overflow */
+
+.ovh {
+    overflow: hidden;
+}
+.ova {
+    overflow: auto;
+}
+/* visibility */
+
+.vh {
+    visibility: hidden;
+}
+.vv {
+    visibility: visible;
+}
+/* ------------------- multiply CSS ------------------ */
+
+// loading
+@-webkit-keyframes m-pulse {
+    0% {
+        background-color: #CCC;
+    }
+    25% {
+        background-color: #EEE;
+    }
+    50% {
+        background-color: #CCC;
+    }
+    75% {
+        background-color: #EEE;
+    }
+    100% {
+        background-color: #CCC;
+    }
+}
+.m-loading {
+    margin: .75em auto;
+    border: .5em solid #AAA;
+    height: 1em;
+    width: 1em;
+    background: #CCC;
+    border-radius: 1em;
+    -webkit-animation: m-pulse 2s ease-in-out 0s infinite;
+}
+/* 元素触摸效果 */
+.active-s3,
+.active-s4,
+.active-s5 {
+    transition: -webkit-filter 0.15s ease-out;
+}
+.active-st1,
+.active-s1.active-state {
+    background-color: #eee;
+}
+.active-st2,
+.active-s2.active-state {
+    opacity: 0.7;
+}
+.active-st3,
+.active-s3.active-state {
+    -webkit-filter: brightness(65%)
+}
+.active-st4,
+.active-s4.active-state {
+    -webkit-filter: grayscale(100%);
+}
+.active-st5,
+.active-s5.active-state {
+    -webkit-filter: sepia(100%);
+}
+.active-st6,
+.active-s6.active-state {
+    background-color: #eee;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* 垂直居中 父元素要设置flex */
+
+.auto {
+    margin: auto
+}
+/* 清除浮 动*/
+
+.fix {
+    *zoom: 1;
+}
+.fix:after {
+    display: table;
+    content: '';
+    clear: both;
+}
+/* 基于display: table-cell的自适应布局 */
+
+.cell {
+    display: table-cell;
+    *display: inline-block;
+    width: 2000px;
+    *width: auto;
+}
+/* 双栏自适应cell部分连续英文字符换行 */
+
+.cell-bk {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+/* 单行文字溢出虚点显 示*/
+
+.ell {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* css3过渡动画效果 */
+
+.trans {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+/* 绝对定位隐藏 */
+
+.abs-out {
+    position: absolute !important;
+    left: -999em;
+}
+.abs-clip {
+    position: absolute;
+    clip: rect(0 0 0 0);
+}
+/* function CSS */
+
+.panel-box {
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+}
+.hide-txt {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+.txt-i2 {
+    text-indent: 2em;
+}
+.img-rounded {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+.img-polaroid {
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.img-circle {
+    -webkit-border-radius: 500px;
+    border-radius: 500px;
+}
+// 定义将背景图像等比缩放到宽度或高度与容器的宽度或高度相等，背景图像始终包含在容器内
+.img-contain {
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+// 定义将背景图片等比例缩放到完全覆盖容器，背景图像有可能超过容器
+.img-cover {
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+// 定义背景图像横向平铺
+.img-rex {
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+}
+// 定义背景图像纵向平铺
+.img-rey {
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+}
+// 定义背景图像横向100%，纵向自适应;
+.img-autoy {
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+// 定义背景图像横向自适应，纵向为100%
+.img-autox {
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+// 定义背景图像居中显示
+.img-center {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.m-box-a {
+    margin-bottom: 1em;
+    overflow: hidden;
+    .hd {
+        margin-bottom: 1em;
+        border-bottom: 1px dotted #e4e9f0;
+        font-size: 1em;
+        span {
+            display: inline-block;
+            margin-bottom: -1px;
+            border-bottom: 4px solid #FE6B01;
+        }
+    }
+    .hd-l {
+        margin: 1em 0 1em -.9em;
+        border-left: 4px solid #FE6B01;
+        line-height: 1.4em;
+        font-size: 1.2em;
+        text-indent: 1em;
+    }
+    .hd-t {
+        display: inline-block;
+        *zoom: 1;
+        *display: inline;
+        margin: 0 0 1em 0;
+        border-top: 4px solid #FE6B01;
+        padding-top: 1em;
+        line-height: 1em;
+        font-size: 1em;
+    }
+    &.panel-box {
+        padding: 0 1em 1em;
+    }
+}
+.loading-mask {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: rgba(0, 0, 0, 0.1);
+    z-index: 10600;
+    -webkit-transition: 0.2s opacity linear;
+    transition: 0.2s opacity linear;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-align: center;
+    box-align: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    box-pack: center;
+}
+.loading {
+    -webkit-transition: 0.2s opacity linear;
+    transition: 0.2s opacity linear;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+.loading.hide {
+    opacity: 0;
+}
+.loading.show {
+    opacity: 1;
+}
+
+/* 徽章和标签 */
+.u-label,.u-badge {
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #999
+}
+
+.u-label {
+    -webkit-border-radius: 3px;
+    border-radius: 3px
+}
+
+.u-badge {
+    padding-right: 9px;
+    padding-left: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px
+}
+
+a.u-label:hover,a.u-label:focus,a.u-badge:hover,a.u-badge:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.u-label-important,.u-badge-important {
+    background-color: #b94a48
+}
+
+.u-label-important[href],.u-badge-important[href] {
+    background-color: #953b39
+}
+
+.u-label-warning,.u-badge-warning {
+    background-color: #f89406
+}
+
+.u-label-warning[href],.u-badge-warning[href] {
+    background-color: #c67605
+}
+
+.u-label-success,.u-badge-success {
+    background-color: #468847
+}
+
+.u-label-success[href],.u-badge-success[href] {
+    background-color: #356635
+}
+
+.u-label-info,.u-badge-info {
+    background-color: #3a87ad
+}
+
+.u-label-info[href],.u-badge-info[href] {
+    background-color: #2d6987
+}
+
+.u-label-inverse,.u-badge-inverse {
+    background-color: #333
+}
+
+.u-label-inverse[href],.u-badge-inverse[href] {
+    background-color: #1a1a1a
+}
+/**
+ * 上中下布局,尾部固定在主体下面
+ <div class="m-layout">
+    <div class="header"></div>
+    <div class="layout-main"></div>
+    <div class="footer"></div>
+ </div>
+ */
+.m-layout {
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+           flex-flow: column;
+    .layout-main {
+        -webkit-box-flex: 1; 
+        -webkit-flex: 1;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }       
+}
+
+/**
+ *  <div class="c100">
+        <span>50%</span>
+        <div class="slice">
+            <div class="bar" style="transform: rotate(270deg);"></div>
+            <div class="fill"></div>
+        </div>
+    </div>
+    如果超过半圆最外面div加入c100-semi
+ */
+.c100 {
+  position: relative;
+  font-size: 120px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 0 0.1em 0.1em 0;
+  background-color: #cccccc;
+}
+.c100 > span {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 5em;
+  line-height: 5em;
+  font-size: 0.2em;
+  color: #cccccc;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out;
+}
+.c100:after {
+    position: absolute;
+    top: 0.04em;
+    left: 0.04em;
+    width: 0.92em;
+    height: 0.92em;
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    background-color: whitesmoke;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+}
+.c100 .slice {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  clip: rect(0em, 1em, 1em, 0.5em);
+}
+.c100 .bar,
+.c100-semi .fill {
+  position: absolute;
+  border: 0.08em solid #307bbb;
+  width: 0.84em;
+  height: 0.84em;
+  clip: rect(0em, 0.5em, 1em, 0em);
+  border-radius: 50%;
+  -webkit-transform: rotate(0deg);
+}
+
+.c100-semi .slice {
+  clip: rect(auto, auto, auto, auto);
+}
+.c100-semi .fill, 
+.c100-sem .bar:after {
+  -webkit-transform: rotate(180deg);
+}

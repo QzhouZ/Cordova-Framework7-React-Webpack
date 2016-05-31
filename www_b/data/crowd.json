@@ -1,0 +1,29 @@
+{
+    "status": 1,
+    "data": [{
+        "id": 1,
+        "name": "上班族",
+        "icon": "img/sbz.png",
+        "iconActive": "img/sbz_active.png"
+    },{
+        "id": 2,
+        "name": "男性",
+        "icon": "img/nx.png",
+        "iconActive": "img/nx_active.png"
+    },{
+        "id": 3,
+        "name": "女性",
+        "icon": "img/nvxing.png",
+        "iconActive": "img/nvxing_active.png"
+    },{
+        "id": 4,
+        "name": "老人",
+        "icon": "img/laoren.png",
+        "iconActive": "img/laoren_active.png"
+    },{
+        "id": 5,
+        "name": "小孩",
+        "icon": "img/xiaohai.png",
+        "iconActive": "img/xiaohai_active.png"
+    }]
+}

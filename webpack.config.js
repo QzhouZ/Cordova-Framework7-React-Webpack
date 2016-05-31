@@ -1,68 +1,68 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var node_dir = path.join(__dirname, './node_modules/');
 
-module.exports = function(options) {
-    var config = {
-        entry: [
-            './www/src/app.js'
+// 判断是否是在当前生产环境
+var isProduction = process.env.NODE_ENV === 'production';
+module.exports = {
+    entry: {
+        app: ['./www/src/app.jsx']
+    },
+    output: {
+        path: path.join(__dirname, './www/dist'),
+        filename: 'js/bundle.js',
+        publicPath: '/www/dist/',
+        chunkFilename: '[name].chunk.js'
+    },
+    module: {
+        noParse:[
+            /*path.join(node_dir,'./react/dist/react.min.js'),
+            path.join(node_dir,'./jquery/dist/jquery.min.js'),
+            path.join(node_dir,'./react-dom/dist/react-dom.min.js')*/
         ],
-        output: {
-            path: path.join(__dirname, 'www/build'),
-            filename: 'bundle.js',
-            publicPath: './build/'
-        },
-        module: {
-            loaders: [{
-                test: /\.jsx?$/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015', 'react']
-                },
-                exclude: /node_modules/
-            },{
-              test: /\.less$/,
-              loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-            },{
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=8192'
-            }],
-            noParse: [/moment-with-locales/]
-        },
-        resolve: {
-            extensions: ['', '.js', '.jsx', '.json', '.coffee'],
-            alias: {
-                lib: path.join(__dirname, "./www/lib"),
-                view: path.join(__dirname, "./www/src/view"),
-                moment: "moment/min/moment-with-locales.min.js"
-            }
-        }
-    };
-
-    // 开发模式
-    if (options.environment === 'dev') {
-        config.devtool = 'source-map';
-        Array.prototype.unshift.call(
-            config.entry,
-            'webpack-dev-server/client?http://127.0.0.1:3000',
-            'webpack/hot/only-dev-server'
-        );
-        config.plugins = [
-            new ExtractTextPlugin("app.css"),
-            new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoErrorsPlugin()
-        ];
-        config.output.publicPath = '/www/build/';
-        // config.module.loaders[0].loaders.unshift('react-hot');
-        config.module.loaders.unshift({
+        loaders: [{
             test: /\.jsx?$/,
-            loader: 'react-hot',
-            exclude: /node_modules/
-        });
-    } else {
-        config.plugins = [
-            new ExtractTextPlugin("app.css")
-        ];
-    }
-    return config;
+            loader: 'babel',
+            query: {
+                presets: ['es2015', 'react']
+            },
+            exclude: node_dir
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style', 'css')
+        }, {
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract('style', 'css!less')
+        }, {
+            test: /\.(png|jpe?g|gif)$/,
+            loader: 'url?limit=8192&name=img/[name].[ext]'
+        }, {
+            //文件加载器，处理文件静态资源
+            test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: 'file?limit=10000&name=fonts/[name].[ext]'
+        }]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.json', '.css', '.less'],
+        alias: {
+            mod: node_dir,
+            libs: path.join(__dirname, "./www/libs"),
+            view: path.join(__dirname, "./www/src/view")
+        }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            React: 'react', // 使react变成全局变量
+            ReactDOM: 'react-dom'
+        }),
+        new webpack.NoErrorsPlugin(),
+        /*new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),*/
+        new ExtractTextPlugin('css/[name].css')
+    ],
+    devtool: isProduction ? null : 'source-map'
 };
