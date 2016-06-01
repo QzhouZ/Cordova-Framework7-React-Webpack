@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "node ./server.js",
     "test": "webpack --config webpack.config.js && cordova run android",
-    "build": "NODE_ENV=production webpack --config webpack.config.js -p --progress --colors",
-    "android": "npm run build && cordova build android",
-    "ios": "npm run build && cordova build ios -device",
-    "watch": "webpack --config webpack.config.js -w"
+    "build": "rm -rf www/dist/* && NODE_ENV=production webpack --config webpack.config.js -p --progress --colors",
+    "android": "mv www/src ./ && cordova build android && mv ./src www/",
+    "ios": "mv www/src ./ && && cordova build ios -device && mv ./src www/",
+    "watch": "webpack --config webpack.config.js -w --progress --colors"
   },
   "repository": {
     "type": "git",

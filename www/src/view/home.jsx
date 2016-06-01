@@ -2,6 +2,7 @@
  * Author: Zane 448482356@qq.com
  */
 
+import "../style/home.less";
 import Unit from 'libs/unit';
 
 class PageContent extends React.Component {
@@ -38,6 +39,9 @@ class PageContent extends React.Component {
         ptrContent.on('refresh', function (e) {
             that.getData();
         });
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
     }
     render() {
         let state = this.state;
@@ -197,5 +201,5 @@ class Single extends React.Component {
 }
 
 module.exports = {
-    content: PageContent
+    pageContent: PageContent
 };

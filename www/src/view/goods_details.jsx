@@ -1,33 +1,34 @@
+import "../style/goods_details.less";
+import Unit from 'libs/unit';
 
-var Unit = require('libs/unit');
-
-var GoodsDetailsContent = React.createClass({
-    getInitialState: function() {
-        return {
+class PageContent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             type: 1,
             sliderData: [],
             infoData: {}
-        }
-    },
-	render: function () {
-        var state = this.state;
+        };
+    }
+	render() {
+        let state = this.state;
         return (
-            <div className="goods-details-content">
+            <div className="page-content goods-details-content">
                 <Slider data={state.sliderData} type={state.type} />
                 <Info data={state.infoData} type={state.type} />
                 <Tab  type={state.type} goodsId={this.props.query.id} />
             </div>
         );
-    },
-    componentDidMount: function() {
-        var that = this;
+    }
+    componentDidMount() {
+        let that = this;
         Unit.ajax({
             api: 'goods_info',
             params: {
                 id: that.props.query.id
             }
         }, function(data) {
-            var res = data.data;
+            let res = data.data;
             if (data.status == 1) {
                 that.setState({
                     type: res.type,
@@ -37,15 +38,29 @@ var GoodsDetailsContent = React.createClass({
             }
         });
 
-        $$('#join_cart').on('click', function() {
+        $$('.page').on('click', '#join_cart', function() {
             Unit.toast('已成功加入预购蓝!', 0, 1500);
         });
-    }
-});
 
-var Slider = React.createClass({
-    render: function() {
-        var dataList = this.props.data.map(function(data, index) {
+        $$('.page').on('click', '#buy', function() {
+            mainView.router.back({
+                pageName: 'home?reload=1',
+                force: true
+            });
+        });
+    }
+};
+
+class Slider extends React.Component {
+    componentDidUpdate() {
+        F7.swiper('.goods-details-slider', {
+            loop: true,
+            lazyLoading: true,
+            pagination : '.goods-slider-pagination'
+        });
+    }
+    render() {
+        let dataList = this.props.data.map((data, index) => {
             return (
                 <div className="swiper-slide" key={index}>
                     <img className="swiper-lazy" data-src={data.src} />
@@ -61,21 +76,14 @@ var Slider = React.createClass({
                 <div className="swiper-pagination goods-slider-pagination"></div>
             </div>
         );
-    },
-    componentDidUpdate: function() {
-        F7.swiper('.goods-details-slider', {
-            loop: true,
-            lazyLoading: true,
-            pagination : '.goods-slider-pagination'
-        });
     }
-});
+};
 
-var Info = React.createClass({
-    render: function() {
-        var data = this.props.data;
-        var type = this.props.type;
-        var timeData = null;
+class Info extends React.Component {
+    render() {
+        let data = this.props.data;
+        let type = this.props.type;
+        let timeData = null;
         if (type > 1) {
             timeData = (function() {
                 return (
@@ -119,40 +127,19 @@ var Info = React.createClass({
                 </div>
             </div>
         );
-    },
-    componentDidUpdate: function() {
-
     }
-});
+};
 
-var Tab = React.createClass({
-    getInitialState: function() {
-        return {
+class Tab extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             commentData: [],
             isLoad: 0
-        }
-    },
-    render: function() {
-        return (
-            <div className="goods-details-tab">
-                <div className="tab-list">
-                    <a href="#goods_details_desc" className="tab-link active">商品详情</a>
-                    <span className="line"></span>
-                    <a href="#goods_details_comment" className="tab-link">评价</a>
-                </div>
-                <div className="tabs">
-                    <div className="tab active" id="goods_details_desc">
-                        <Desc />
-                    </div>
-                    <div className="tab" id="goods_details_comment">
-                        <Comment data={this.state.commentData} isLoad={this.state.isLoad} />
-                    </div>
-                </div>
-            </div>
-        );
-    },
-    componentDidMount: function() {
-        var that = this;
+        };
+    }
+    componentDidMount() {
+        let that = this;
         $$("#goods_details_desc").on("show", function(e) {
             e.stopPropagation();
         });
@@ -173,24 +160,40 @@ var Tab = React.createClass({
             e.stopPropagation();
         });
     }
-});
+    render() {
+        return (
+            <div className="goods-details-tab">
+                <div className="tab-list">
+                    <a href="#goods_details_desc" className="tab-link active">商品详情</a>
+                    <span className="line"></span>
+                    <a href="#goods_details_comment" className="tab-link">评价</a>
+                </div>
+                <div className="tabs">
+                    <div className="tab active" id="goods_details_desc">
+                        <Desc />
+                    </div>
+                    <div className="tab" id="goods_details_comment">
+                        <Comment data={this.state.commentData} isLoad={this.state.isLoad} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+};
 
-var Desc = React.createClass({
-    render: function() {
+class Desc extends React.Component {
+    render() {
         return (
             <div className="desc-content">
                 这里是详情内容
             </div>
         );
-    },
-    componentDidMount: function() {
-
     }
-});
+};
 
-var Comment = React.createClass({
-    render: function() {
-        var dataList = this.props.data.map(function(data, index) {
+class Comment extends React.Component {
+    render() {
+        let dataList = this.props.data.map((data, index) => {
             return (
                 <div className="comment-list" key={index}>
                     <div className="name">{data.name}</div>
@@ -210,5 +213,28 @@ var Comment = React.createClass({
             </div>
         );
     }
-});
-module.exports = GoodsDetailsContent;
+};
+module.exports = {
+    navbar: `<div class="left">
+            <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
+            </div>
+            <div class="center sliding">商品详情</div>
+            <div class="right"></div>
+            `,
+    pageContent: PageContent,
+    pageClass: 'toolbar-through',
+    pageFooter: `
+                <div id="goods_details_footer" class="toolbar tabbar tabbar-labels row footer-bar-btn-list no-gutter">
+                    <div id="collect" class="col-20 goods-collect">
+                    <i class="fa fa-star-o"></i>
+                    <div>收藏</div>
+                    </div>
+                    <div id="join_cart" class="col-40 blue-btn">
+                    加入预购篮
+                    </div>
+                    <div id="buy" class="col-40 orange-btn">
+                    立即预购
+                    </div>
+                </div>
+                `
+};

@@ -2,11 +2,7 @@
  * Author: Zane 448482356@qq.com
  */
 
-import "./style/m";
-import "./style/flex";
-import "./style/base";
-import "./style/view_1";
-import "./style/view_2";
+import "./app.less";
 
 window.$$ = Framework7.$;
 
@@ -64,7 +60,7 @@ $$(document).on('click', 'a[data-page]', function(e) {
         container = mainView;
     }
     container.router.load({
-        content: '<div class="navbar"><div class="navbar-inner"></div></div><div class="page navbar-fixed toolbar-fixed" data-page="' + page + '"></div>',
+        content: '<div class="navbar"><div class="navbar-inner"></div></div><div class="page" data-page="' + page + '"></div>',
         query: query
     });
 }, true);
@@ -73,20 +69,28 @@ $$(document).on('pageBeforeInit', function(e) {
     var page = e.detail.page;
     var navbar = require('view/' + page.name).navbar;
     $$(page.navbarInnerContainer).html(navbar);
-
 });
 
 $$(document).on('pageAfterAnimation', function(e) {
     var page = e.detail.page;
-    var Content = require('view/' + page.name).content;
+    var view = require('view/' + page.name);
+    var PageContent = view.pageContent;
+    var PageFooter = view.pageFooter;
+    var PageClass = view.pageClass;
+    if (PageClass) {
+        $$(page.container).addClass(PageClass);
+    }
     ReactDOM.render( 
-        <Content query={page.query} />,
+        <PageContent query={page.query} />,
         page.container
     );
+    if (PageFooter) {
+        $$(page.container).append(PageFooter);
+    }
 });
 
 
-let Home = require('view/home').content;
+let Home = require('view/home').pageContent;
 ReactDOM.render( 
     <Home /> ,
     document.getElementById('init_page')

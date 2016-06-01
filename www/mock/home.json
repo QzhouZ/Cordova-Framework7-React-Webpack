@@ -14,39 +14,39 @@
         "column": [{
             "id": 1,
             "name": "医保用药",
-            "icon": "img/ybyy.png"
+            "icon": "mock/img/ybyy.png"
         },{
             "id": 2,
             "name": "中西成药",
-            "icon": "img/zxcy.png"
+            "icon": "mock/img/zxcy.png"
         },{
             "id": 3,
             "name": "医疗器械",
-            "icon": "img/ylqx.png"
+            "icon": "mock/img/ylqx.png"
         },{
             "id": 4,
             "name": "计生用品",
-            "icon": "img/jsyp.png"
+            "icon": "mock/img/jsyp.png"
         },{
             "id": 5,
             "name": "家庭药箱",
-            "icon": "img/jtyx.png"
+            "icon": "mock/img/jtyx.png"
         },{
             "id": 6,
             "name": "滋补保健",
-            "icon": "img/zbbj.png"
+            "icon": "mock/img/zbbj.png"
         },{
             "id": 7,
             "name": "维矿营养",
-            "icon": "img/wkyy.png"
+            "icon": "mock/img/wkyy.png"
         },{
             "id": 8,
             "name": "药妆个护",
-            "icon": "img/yzgh.png"
+            "icon": "mock/img/yzgh.png"
         },{
             "id": 9,
             "name": "药妆个护",
-            "icon": "img/yzgh.png"
+            "icon": "mock/img/yzgh.png"
         }],
         "brand": [{
             "id": 1,

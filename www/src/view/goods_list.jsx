@@ -1,41 +1,32 @@
-var Unit = require('libs/unit');
+import "../style/goods_list.less";
+import Unit from 'libs/unit';
 
-var PageContent = React.createClass({
-    getInitialState: function() {
-        return {
-            reload: 0
-        }
-    },
-    closeModal: function() {
-        this.setState({
-            reload: 1
-        });
-        $$('.modal-overlay-c,.modal-content-custom').removeClass('modal-in');
-    },
-    componentDidMount: function() {
-        console.log(this.props.query);
-    },
-    render: function() {
+class PageContent extends React.Component {
+    render() {
         return (
             <div className="page-content goods-content">
-                <Goods reload={this.state.reload} />
+                <Goods />
             </div>
         );
     }
-});
+};
 
-var Goods = React.createClass({
-    getInitialState: function() {
-        return {
+class Goods extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             data: [],
             viewList: 1
-        }
-    },
-    getData: function() {
-        var that = this;
-        var cateId = $$("#goods_cate").attr('data-cateid');
-        var subCateId = $$("#goods_cate").attr('data-subcateid');
-        var sortType = $$("#goods_sort").attr('data-sort');
+        };
+    }
+    addCart(goodsId, storeId) {
+        Unit.toast('已成功加入预购篮!', 0, 1500);
+    }
+    getData() {
+        let that = this;
+        let cateId = $$("#goods_cate").attr('data-cateid');
+        let subCateId = $$("#goods_cate").attr('data-subcateid');
+        let sortType = $$("#goods_sort").attr('data-sort');
         Unit.ajax({
             api: 'new',
             params: {
@@ -50,9 +41,30 @@ var Goods = React.createClass({
                 });
             }
         });
-    },
-    render: function() {
-        var dataList = this.state.data.map(function(data, index) {
+    }
+    componentDidMount() {
+        let that = this;
+        this.getData();
+        $$('#goods_list_view').on('click', function() {
+            let list = $$(this).attr('data-list');
+            let src = '';
+            if (list == 1) {
+                src = require('../img/two_list.png');
+                list = 2;
+            } else {
+                src = require('../img/one_list.png');
+                list = 1;
+            }
+            $$(this).attr('data-list', list);
+            $$(this).find('img').attr('src', src);
+            that.setState({
+                viewList: list
+            });
+        });
+    }
+    render() {
+        var that = this;
+        let dataList = this.state.data.map((data, index) => {
             return (
                 <li key={index}>
                     <a className="u-item-list" href="#"  data-page="goods_details" data-query="id=1">
@@ -69,16 +81,14 @@ var Goods = React.createClass({
                             <p className="company">生成企业：美国博士伦</p>
                         </div>
                     </a>
-                    <div className="cart">
-                        <img src="img/cart_red.png" alt=""/>
+                    <div className="cart" onClick={that.addCart}>
+                        <img src={require('../img/cart_red.png')} />
                     </div>
                 </li>
             );
         });
-        var className = 'goods-list-1';
-        if (this.state.viewList == 1) {
-            className = 'goods-list-1';
-        } else {
+        let className = 'goods-list-1';
+        if (this.state.viewList != 1) {
             className = 'goods-list-2';
         }
         return (
@@ -88,44 +98,36 @@ var Goods = React.createClass({
                 </ul>
             </div>
         );
-    },
-    componentDidMount: function() {
-        var that = this;
-        this.getData();
-        $$('#goods_list_view').on('click', function() {
-            var list = $$(this).attr('data-list');
-            var src = '';
-            if (list == 1) {
-                src = 'img/two_list.png';
-                list = 2;
-            } else {
-                src = 'img/one_list.png';
-                list = 1;
-            }
-            $$(this).attr('data-list', list);
-            $$(this).find('img').attr('src', src);
-            that.setState({
-                viewList: list
-            });
-        });
-    },
-    componentWillReceiveProps: function(nextProps) {
-        if (nextProps.reload) {
-            this.getData();
-        }
     }
-});
-
-
-
-
+};
 
 module.exports = {
     navbar: `<div class="left">
-        <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
-        </div>
-        <div class="center sliding">商品列表</div>`,
-    content: PageContent
+            <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
+            </div>
+            <div class="center sliding">商品列表</div>
+            <div class="right"></div>
+            <div id="goods_filter_bar" class="subnavbar goods-sub-navBar">
+                <span id="goods_cate" class="item flex flex-center flex-col-center" data-type="cate" data-cateid="0" data-subcateid="0">
+                    <em class="ell cate">全部分类</em>
+                    <i class="icon-caret"></i>
+                </span>
+                <span id="goods_sort" class="item" data-type="sort"  data-sort="0">
+                    <em>综合排序</em>
+                    <i class="icon-caret"></i>
+                </span>
+                <span class="item-icon flex">
+                    <a class="link" id="goods_list_view" data-list="1">
+                        <img src="${require('../img/one_list.png')}"/>
+                    </a>
+                    <a class="link">
+                        <img src="${require('../img/filter.png')}"/>
+                    </a>
+                </span>
+            </div>
+            `,
+    pageContent: PageContent,
+    pageClass: 'goods-navbar-fixed'
 };
 
 

@@ -31,13 +31,18 @@ let Unit = {
             data: params,
             dataType: "json",
             success: function(data) {
-                successCallback(data);
+                if (data.status == 0) {
+                    Unit.toast(data.info);
+                } else {
+                    successCallback && successCallback(data);
+                }
             },
             error: function() {
+                F7.hideIndicator();
                 if (errorCallback) {
                     errorCallback();
                 } else {
-                    // Unit.loading("服务正在升级中，请稍后再试", 2000);
+                    Unit.toast("网络出错啦～", 1000);
                 }
             },
             timeout: 8000
@@ -62,16 +67,14 @@ Unit.toast = function(msg, duration) {
         return;
     }
     $$('body').append(toast);
-
     $$(toast).show();
     $$(toast).css({
         marginTop: - Math.round($$(toast).outerHeight() / 2) + 'px'
     });
     $$(toast).css({
-        marginLeft: - Math.round($$(toast).outerWidth() / 2 / 1.185) + 'px' //1.185 是初始化时候的放大效果
+        marginLeft: - Math.round($$(toast).outerWidth() / 2) + 'px'
     });
     $$(toast).addClass('modal-in').transitionEnd(function () {
-
     });
     $$(toast).on('click', function() {
         remove();
@@ -85,7 +88,6 @@ Unit.toast = function(msg, duration) {
         remove();
     }, duration || 1500);
 };
-
 
 
 /**
