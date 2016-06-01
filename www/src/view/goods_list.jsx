@@ -2,27 +2,13 @@ import "style/goods_list.less";
 import Unit from 'libs/unit';
 
 class PageContent extends React.Component {
-    render() {
-        return (
-            <div className="page-content goods-content">
-                <Goods />
-            </div>
-        );
-    }
-};
-
-class Goods extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            viewList: 1
+            data: []
         };
     }
-    addCart(goodsId, storeId) {
-        Unit.toast('已成功加入预购篮!', 0, 1500);
-    }
-    getData() {
+    fetch() {
         let that = this;
         let cateId = $$("#goods_cate").attr('data-cateid');
         let subCateId = $$("#goods_cate").attr('data-subcateid');
@@ -44,9 +30,41 @@ class Goods extends React.Component {
     }
     componentDidMount() {
         let that = this;
-        this.getData();
-        $$('#goods_list_view').on('click', function() {
-            let list = $$(this).attr('data-list');
+        let $$content = $$('#goods_list_content');
+        F7.initPullToRefresh('#goods_list_content');
+        // 下拉刷新
+        $$content.on('refresh', e => {
+            that.fetch();
+        });
+        F7.pullToRefreshTrigger($$content);
+    }
+    render() {
+        return (
+            <div id="goods_list_content" className="page-content goods-content pull-to-refresh-content">
+                <div className="pull-to-refresh-layer">
+                    <div className="preloader"></div>
+                    <div className="pull-to-refresh-arrow"></div>
+                </div>
+                <Goods data={this.state.data} />
+            </div>
+        );
+    }
+};
+
+class Goods extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            viewList: 1
+        };
+    }
+    addCart(goodsId, storeId) {
+        Unit.toast('已成功加入预购篮!', 0, 1500);
+    }
+    componentDidMount() {
+        let that = this;
+        $$('#goods_list_view').on('click', e => {
+            let list = $$(e.currentTarget).attr('data-list');
             let src = '';
             if (list == 1) {
                 src = require('img/two_list.png');
@@ -55,8 +73,8 @@ class Goods extends React.Component {
                 src = require('img/one_list.png');
                 list = 1;
             }
-            $$(this).attr('data-list', list);
-            $$(this).find('img').attr('src', src);
+            $$(e.currentTarget).attr('data-list', list);
+            $$(e.currentTarget).find('img').attr('src', src);
             that.setState({
                 viewList: list
             });
@@ -64,7 +82,7 @@ class Goods extends React.Component {
     }
     render() {
         var that = this;
-        let dataList = this.state.data.map((data, index) => {
+        let dataList = this.props.data.map((data, index) => {
             return (
                 <li key={index}>
                     <a className="u-item-list" href="#"  data-page="goods_details" data-query="id=1">
@@ -91,6 +109,7 @@ class Goods extends React.Component {
         if (this.state.viewList != 1) {
             className = 'goods-list-2';
         }
+        console.log(className);
         return (
             <div className={className}>
                 <ul className="bd">

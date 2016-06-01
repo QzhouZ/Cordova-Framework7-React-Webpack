@@ -11,7 +11,7 @@ window.F7 = new Framework7({
     modalTitle: '提示信息',
     modalButtonOk: '确认',
     modalButtonCancel: '取消',
-    swipeBackPage: false,
+    swipeBackPage: true,
     cache: false,
     swipePanel: 'left'
 });
@@ -63,7 +63,7 @@ $$(document).on('click', 'a[data-page]', function(e) {
         content: '<div class="navbar"><div class="navbar-inner"></div></div><div class="page" data-page="' + page + '"></div>',
         query: query
     });
-}, true);
+});
 
 $$(document).on('pageBeforeInit', function(e) {
     var page = e.detail.page;

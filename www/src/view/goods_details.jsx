@@ -38,11 +38,11 @@ class PageContent extends React.Component {
             }
         });
 
-        $$('.page').on('click', '#join_cart', function() {
+        $$('.page').on('click', '#join_cart', () => {
             Unit.toast('已成功加入预购蓝!', 0, 1500);
         });
 
-        $$('.page').on('click', '#buy', function() {
+        $$('.page').on('click', '#buy', () => {
             mainView.router.back({
                 pageName: 'home?reload=1',
                 force: true
@@ -140,10 +140,10 @@ class Tab extends React.Component {
     }
     componentDidMount() {
         let that = this;
-        $$("#goods_details_desc").on("show", function(e) {
+        $$("#goods_details_desc").on("show", e => {
             e.stopPropagation();
         });
-        $$("#goods_details_comment").on("show", function(e) {
+        $$("#goods_details_comment").on("show", e => {
             Unit.ajax({
                 api: 'goods_comment',
                 params: {

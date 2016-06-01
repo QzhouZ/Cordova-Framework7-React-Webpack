@@ -34,9 +34,9 @@ class PageContent extends React.Component {
     componentDidMount() {
         let that = this;
         F7.initPullToRefresh('#home_content');
-        let ptrContent = $$('#home_content');
+        let content = $$('#home_content');
         that.getData();
-        ptrContent.on('refresh', function (e) {
+        content.on('refresh', e => {
             that.getData();
         });
     }
@@ -120,7 +120,7 @@ class Column extends React.Component {
     render() {
         let that = this;
         let dataList = this.props.data.map((data, index) => {
-            let children = data.map(function(data, index) {
+            let children = data.map((data, index) => {
                 return (
                     <div className="col-25" key={index}>
                         <a href="#" data-page="goods_list">
