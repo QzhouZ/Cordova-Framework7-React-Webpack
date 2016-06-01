@@ -2,7 +2,7 @@
  * Author: Zane 448482356@qq.com
  */
 
-import "../style/home.less";
+import "style/home.less";
 import Unit from 'libs/unit';
 
 class PageContent extends React.Component {

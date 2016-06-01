@@ -16,11 +16,6 @@ module.exports = {
         chunkFilename: '[name].chunk.js'
     },
     module: {
-        noParse:[
-            /*path.join(node_dir,'./react/dist/react.min.js'),
-            path.join(node_dir,'./jquery/dist/jquery.min.js'),
-            path.join(node_dir,'./react-dom/dist/react-dom.min.js')*/
-        ],
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel',
@@ -48,6 +43,8 @@ module.exports = {
         alias: {
             mod: node_dir,
             libs: path.join(__dirname, "./www/libs"),
+            style: path.join(__dirname, "./www/src/style"),
+            img: path.join(__dirname, "./www/src/img"),
             view: path.join(__dirname, "./www/src/view")
         }
     },
@@ -57,11 +54,6 @@ module.exports = {
             ReactDOM: 'react-dom'
         }),
         new webpack.NoErrorsPlugin(),
-        /*new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),*/
         new ExtractTextPlugin('css/[name].css')
     ],
     devtool: isProduction ? null : 'source-map'

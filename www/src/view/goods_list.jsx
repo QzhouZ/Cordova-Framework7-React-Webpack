@@ -1,4 +1,4 @@
-import "../style/goods_list.less";
+import "style/goods_list.less";
 import Unit from 'libs/unit';
 
 class PageContent extends React.Component {
@@ -49,10 +49,10 @@ class Goods extends React.Component {
             let list = $$(this).attr('data-list');
             let src = '';
             if (list == 1) {
-                src = require('../img/two_list.png');
+                src = require('img/two_list.png');
                 list = 2;
             } else {
-                src = require('../img/one_list.png');
+                src = require('img/one_list.png');
                 list = 1;
             }
             $$(this).attr('data-list', list);
@@ -82,7 +82,7 @@ class Goods extends React.Component {
                         </div>
                     </a>
                     <div className="cart" onClick={that.addCart}>
-                        <img src={require('../img/cart_red.png')} />
+                        <img src={require('img/cart_red.png')} />
                     </div>
                 </li>
             );
@@ -118,10 +118,10 @@ module.exports = {
                 </span>
                 <span class="item-icon flex">
                     <a class="link" id="goods_list_view" data-list="1">
-                        <img src="${require('../img/one_list.png')}"/>
+                        <img src="${require('img/one_list.png')}"/>
                     </a>
                     <a class="link">
-                        <img src="${require('../img/filter.png')}"/>
+                        <img src="${require('img/filter.png')}"/>
                     </a>
                 </span>
             </div>

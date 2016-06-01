@@ -1,4 +1,4 @@
-import "../style/goods_details.less";
+import "style/goods_details.less";
 import Unit from 'libs/unit';
 
 class PageContent extends React.Component {
