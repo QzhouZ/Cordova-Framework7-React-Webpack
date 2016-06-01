@@ -73,7 +73,7 @@ class Goods extends React.Component {
                         </div>
                         <div className="info">
                             <p>惠氏  钙尔奇  碳酸钙</p>
-                            <p>D3片 600mg*60片 </p>
+                            <p>D4片 600mg*60片 </p>
                             <p className="price">
                                 <span className="old">¥4100.00</span>
                                 <span className="new ml10">¥300.00</span>

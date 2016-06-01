@@ -173,7 +173,7 @@ class Single extends React.Component {
         let dataList = this.props.data.map((data, index) => {
             return (
                 <li key={index}>
-                    <a className="u-item-list" href="view/goods_list.html">
+                    <a className="u-item-list" href="#" data-page="goods_list">
                         <p className="thumb">
                             <img src={data.src} />
                         </p>

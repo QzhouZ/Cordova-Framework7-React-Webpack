@@ -33,7 +33,6 @@ module.exports = {
             test: /\.(png|jpe?g|gif)$/,
             loader: 'url?limit=8192&name=img/[name].[ext]'
         }, {
-            //文件加载器，处理文件静态资源
             test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'file?limit=10000&name=fonts/[name].[ext]'
         }]

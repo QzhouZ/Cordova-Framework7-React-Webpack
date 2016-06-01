@@ -214,6 +214,7 @@ class Comment extends React.Component {
         );
     }
 };
+
 module.exports = {
     navbar: `<div class="left">
             <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
