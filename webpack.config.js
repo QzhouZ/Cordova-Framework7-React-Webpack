@@ -40,7 +40,6 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx', '.json', '.css', '.less'],
         alias: {
-            mod: node_dir,
             libs: path.join(__dirname, "./www/libs"),
             style: path.join(__dirname, "./www/src/style"),
             img: path.join(__dirname, "./www/src/img"),
