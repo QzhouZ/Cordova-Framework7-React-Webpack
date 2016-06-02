@@ -2,7 +2,9 @@
  * Author: Zane 448482356@qq.com
  */
 
-import "./app.less";
+import "./style/m.less";
+import "./style/flex.less";
+import "./style/base.less";
 import "font-awesome/css/font-awesome.css";
 
 window.$$ = Framework7.$;

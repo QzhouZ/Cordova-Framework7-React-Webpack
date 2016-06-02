@@ -26,7 +26,6 @@
            ├─style<—————样式文件
            ├─img<—————图片
            ├─view<—————react页面组件
-           ├─app.less<—————入口css文件
            └─app.jsx<—————入口js文件
 
 ```
