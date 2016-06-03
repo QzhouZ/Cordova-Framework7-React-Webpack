@@ -109,9 +109,8 @@ $$(document).on('pageAfterAnimation', function(e) {
     }
 });
 
-
 let Home = require('view/home').pageContent;
 ReactDOM.render( 
     <Home /> ,
-    document.getElementById('init_page')
+    mainView.activePage.container
 );

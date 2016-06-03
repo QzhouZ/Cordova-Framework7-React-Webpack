@@ -104,73 +104,73 @@
             "src": "mock/img/hot_1.png"
         },{
             "id":3,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_2.png"
         },{
             "id":4,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "500.00",
             "price": "300.00",
             "src": "mock/img/hot_2.png"
         }],
         "newProduct":  [{
             "id": 1,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_2.png"
         },{
             "id": 2,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_1.png"
         },{
             "id": 3,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/b1.jpg"
         },{
             "id": 4,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/b1.jpg"
         }],
         "singleProduct":  [{
             "id": 1,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_2.png"
         },{
             "id": 2,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_1.png"
         },{
             "id": 3,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_1.png"
         },{
             "id": 4,
-            "name": "爱乐维",
-            "title": "复合维生素片",
+            "name": "爱乐维 复合维生素片",
+            "title": "60ml",
             "oldPrice": "600.00",
             "price": "300.00",
             "src": "mock/img/hot_2.png"
