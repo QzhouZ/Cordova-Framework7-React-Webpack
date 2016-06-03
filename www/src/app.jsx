@@ -63,15 +63,32 @@ $$(document).on('click', 'a[data-page]', function(e) {
         container = mainView;
     }
     container.router.load({
-        content: '<div class="navbar"><div class="navbar-inner"></div></div><div class="page" data-page="' + page + '"></div>',
+        content: `
+                <div class="navbar">
+                    <div class="navbar-inner"></div>
+                </div>
+                <div class="page" data-page="${page}"></div>
+                `,
         query: query
     });
 });
 
 $$(document).on('pageBeforeInit', function(e) {
     var page = e.detail.page;
-    var navbar = require('view/' + page.name).navbar;
-    $$(page.navbarInnerContainer).html(navbar);
+    var view = require('view/' + page.name);
+    var pageTitle = view.pageTitle;
+    var navbar = view.navbar;
+    if (navbar) {
+        $$(page.navbarInnerContainer).html(navbar);
+    } else {
+        $$(page.navbarInnerContainer).html(`
+            <div class="left">
+                <a href="#" class="back link"><i class="icon icon-back"></i><span>返回</span></a>
+            </div>
+            <div class="center sliding">${pageTitle}</div>
+            <div class="right"></div>
+        `);
+    }
 });
 
 $$(document).on('pageAfterAnimation', function(e) {

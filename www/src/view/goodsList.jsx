@@ -1,52 +1,31 @@
-import "style/goods_list.less";
+import "style/goodsList.less";
 import Unit from 'libs/unit';
+import BaseModule from './baseModule';
 
-class PageContent extends React.Component {
+class PageContent extends BaseModule {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            pullToRefresh: 1,
+            data: null,
+            noDataMsg: '没有找到相关数据'
         };
     }
     fetch() {
-        let that = this;
-        let cateId = $$("#goods_cate").attr('data-cateid');
-        let subCateId = $$("#goods_cate").attr('data-subcateid');
-        let sortType = $$("#goods_sort").attr('data-sort');
         Unit.ajax({
-            api: 'new',
-            params: {
-                cateId: cateId,
-                subCateId: subCateId,
-                sortType: sortType
-            }
-        }, function(data) {
-            if (data.status == 1) {
-                that.setState({
-                    data: data.data
-                });
-            }
+            api: 'goods.json'
+        }, ret => {
+            this.setState({
+                data: ret.data
+            });
         });
     }
-    componentDidMount() {
-        let that = this;
-        let $$content = $$('#goods_list_content');
-        F7.initPullToRefresh('#goods_list_content');
-        // 下拉刷新
-        $$content.on('refresh', e => {
-            that.fetch();
-        });
-        F7.pullToRefreshTrigger($$content);
+    toComponentDidMount(contentDom) {
+        F7.pullToRefreshTrigger(contentDom);
     }
-    render() {
+    toRender() {
         return (
-            <div id="goods_list_content" className="page-content goods-content pull-to-refresh-content">
-                <div className="pull-to-refresh-layer">
-                    <div className="preloader"></div>
-                    <div className="pull-to-refresh-arrow"></div>
-                </div>
-                <Goods data={this.state.data} />
-            </div>
+            <Goods data={this.state.data} />
         );
     }
 };
@@ -62,7 +41,6 @@ class Goods extends React.Component {
         Unit.toast('已成功加入预购篮!', 0, 1500);
     }
     componentDidMount() {
-        let that = this;
         $$('#goods_list_view').on('click', e => {
             let list = $$(e.currentTarget).attr('data-list');
             let src = '';
@@ -75,17 +53,16 @@ class Goods extends React.Component {
             }
             $$(e.currentTarget).attr('data-list', list);
             $$(e.currentTarget).find('img').attr('src', src);
-            that.setState({
+            this.setState({
                 viewList: list
             });
         });
     }
     render() {
-        var that = this;
         let dataList = this.props.data.map((data, index) => {
             return (
                 <li key={index}>
-                    <a className="u-item-list" href="#"  data-page="goods_details" data-query="id=1">
+                    <a className="u-item-list" href="#"  data-page="goodsDetails" data-query="id=1">
                         <div className="thumb">
                             <img src={data.src} />
                         </div>
@@ -93,13 +70,12 @@ class Goods extends React.Component {
                             <p>惠氏  钙尔奇  碳酸钙</p>
                             <p>D4片 600mg*60片 </p>
                             <p className="price">
-                                <span className="old">¥4100.00</span>
-                                <span className="new ml10">¥300.00</span>
+                                <span className="new">¥ 300.00</span>
                             </p>
                             <p className="company">生成企业：美国博士伦</p>
                         </div>
                     </a>
-                    <div className="cart" onClick={that.addCart}>
+                    <div className="cart" onClick={this.addCart}>
                         <img src={require('img/cart_red.png')} />
                     </div>
                 </li>
@@ -109,7 +85,6 @@ class Goods extends React.Component {
         if (this.state.viewList != 1) {
             className = 'goods-list-2';
         }
-        console.log(className);
         return (
             <div className={className}>
                 <ul className="bd">
@@ -131,7 +106,7 @@ module.exports = {
                     <em class="ell cate">全部分类</em>
                     <i class="icon-caret"></i>
                 </span>
-                <span id="goods_sort" class="item" data-type="sort"  data-sort="0">
+                <span id="goods_sort" class="item">
                     <em>综合排序</em>
                     <i class="icon-caret"></i>
                 </span>
@@ -146,7 +121,7 @@ module.exports = {
             </div>
             `,
     pageContent: PageContent,
-    pageClass: 'goods-navbar-fixed'
+    pageClass: 'goods-navbar-fixed goods-page'
 };
 
 

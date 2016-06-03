@@ -88,7 +88,12 @@ input {
     text-align: center;
     font-size: .7rem;
 }
-
+.pull-to-refresh-layer {
+    display: none;
+}
+.pull-to-refresh-content .pull-to-refresh-layer {
+    display: block;
+}
 
 /* Custom */
 .root-bar .toolbar-inner {
@@ -318,6 +323,7 @@ input {
         margin: 0;
         font-size: .6rem;
         color: #333;
+        text-align: left
     }
     .thumb {
         img {
@@ -387,4 +393,9 @@ input {
     text-align: center;
     font-size: 12px;
     line-height: 16px;
+}
+.no-data {
+    margin-top: 40vh;
+    text-align: center;
+    color: #999;
 }

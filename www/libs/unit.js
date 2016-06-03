@@ -7,7 +7,7 @@
  *
  */
 let Unit = {
-    url: 'mock/',
+    url: '',
     ajax: function(options,successCallback, errorCallback) {
         var _defaParams = {
             // appKey: "21725276",
@@ -24,7 +24,15 @@ let Unit = {
         }
         var method = options.method || "get";
         var api = options.api || "";
-        var url = options.url || this.url + api + '.json';
+        var url = '';
+        if (api.indexOf('.json') > -1) {
+            url = 'mock/' + api;
+        } else {
+            url =  options.url || this.url + api;
+        }
+        if (options.loading) {
+            F7.showIndicator();
+        }
         $$.ajax({
             method: method,
             url: url,

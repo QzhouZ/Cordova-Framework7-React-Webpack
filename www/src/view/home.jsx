@@ -4,57 +4,47 @@
 
 import "style/home.less";
 import Unit from 'libs/unit';
+import BaseModule from './baseModule';
 
-class PageContent extends React.Component {
+class PageContent extends BaseModule {
     constructor(props) {
         super(props);
         this.state = {
-            slideData: [],
-            columnData: [],
-            singleData: []
+            pullToRefresh: 1,
+            data: null
         };
     }
-    getData() {
-        let that = this;
+    fetch() {
         Unit.ajax({
-            api: 'home'
-        }, function(data) {
-            let res = data.data;
-            if (data.status == 1) {
-                let fmtColumnData = Unit.fmtDataArry(res.column, 8);
-                let fmtBrandData = Unit.fmtDataArry(res.brand, 12);
-                that.setState({
-                    slideData: res.ad,
+            api: 'home.json',
+            loading: 1
+        }, ret => {
+            let data = ret.data;
+            let fmtColumnData = Unit.fmtDataArry(data.column, 8);
+            let fmtBrandData = Unit.fmtDataArry(data.brand, 12);
+            this.setState({
+                data: {
+                    slideData: data.ad,
                     columnData:fmtColumnData,
-                    singleData: res.singleProduct
-                });
-            }
+                    singleData: data.singleProduct
+                }
+            });
         });
     }
-    componentDidMount() {
-        let that = this;
-        F7.initPullToRefresh('#home_content');
-        let content = $$('#home_content');
-        that.getData();
-        content.on('refresh', e => {
-            that.getData();
-        });
+    toComponentDidMount() {
+        this.fetch();
     }
     componentWillReceiveProps(nextProps) {
         console.log(nextProps);
     }
-    render() {
-        let state = this.state;
+    toRender() {
+        let data = this.state.data;
         return (
-            <div id="home_content" className="page-content home-content pull-to-refresh-content">
-                <div className="pull-to-refresh-layer">
-                    <div className="preloader"></div>
-                    <div className="pull-to-refresh-arrow"></div>
-                </div>
-                <Slider data={state.slideData} />
-                <Column data={state.columnData} />
+            <div>
+                <Slider data={data.slideData} />
+                <Column data={data.columnData} />
                 <SortSub />
-                <Single data={state.singleData} />
+                <Single data={data.singleData} />
             </div>
         );
     }
@@ -65,8 +55,8 @@ class Slider extends React.Component {
     constructor (props) {
         super(props)
         this.homeSlider = null;
-    }  
-    componentDidUpdate() {
+    }
+    componentDidMount() {
         if (!this.homeSlider) {
             this.homeSlider = F7.swiper('.home-slider-banner', {
                 autoplay: 5000,
@@ -74,13 +64,12 @@ class Slider extends React.Component {
             });
         } else {
             this.homeSlider.update(true);
-            this.homeSlider.slideTo(0);
         }
     }
     render() {
         let dataList = this.props.data.map((data, index) => {
             return (
-                <a className="swiper-slide" href="#" key={index} data-page="goods_list">
+                <a className="swiper-slide" href="#" key={index} data-page="goodsList">
                     <img src={data.src} />
                 </a>
             );
@@ -102,7 +91,7 @@ class Column extends React.Component {
         super(props)
         this.homeSliderSort = null;
     }
-    componentDidUpdate() {
+    componentDidMount() {
         let data = this.props.data;
         let pagination = '';
         if (data.length > 1) {
@@ -114,16 +103,14 @@ class Column extends React.Component {
             });
         } else {
             this.homeSliderSort.update(true);
-            this.homeSliderSort.slideTo(0);
         }
     }
     render() {
-        let that = this;
         let dataList = this.props.data.map((data, index) => {
             let children = data.map((data, index) => {
                 return (
                     <div className="col-25" key={index}>
-                        <a href="#" data-page="goods_list">
+                        <a href="#" data-page="goodsList">
                             <img src={data.icon} />
                         </a>
                     </div>
@@ -173,15 +160,14 @@ class Single extends React.Component {
         let dataList = this.props.data.map((data, index) => {
             return (
                 <li key={index}>
-                    <a className="u-item-list" href="#" data-page="goods_list">
+                    <a className="u-item-list" href="#" data-page="goodsList">
                         <p className="thumb">
                             <img src={data.src} />
                         </p>
                         <p>{data.name}</p>
                         <p>{data.title}</p>
                         <p className="price">
-                            <span className="old">¥{data.oldPrice}</span>
-                            <span className="new ml10">¥{data.price}</span>
+                            <span className="new">¥ {data.price}</span>
                         </p>
                     </a>
                 </li>
