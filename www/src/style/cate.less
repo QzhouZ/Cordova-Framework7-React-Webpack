@@ -1,0 +1,47 @@
+.cate-content {
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+}
+.cate-list {
+    width: 30%;
+    height: 100%;
+    overflow: auto;
+    background-color: #f3f4f6;
+    li {
+        height: 3.5rem;
+        line-height: 3.5rem;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        &.active {
+            background-color: #fff;
+            border-left: 4px solid #1293e6;
+            color: #1293e6;
+        }
+    }
+}
+.cate-list-item {
+    width: 70%;
+    height: 100%;
+    overflow: auto;
+    padding-left: 1rem;
+    .item-box {
+        .hd {
+            margin-top: 1rem;
+            color: #bebebe;
+        }
+        .bd {
+            word-break: break-all;
+            a {
+                display: inline-block;
+                margin-right: 1rem;
+                margin-top: .4rem;
+                font-size: .7rem;
+                color: #757575;
+                &.active {
+                    color: #1293e6;
+                }
+            }
+        }
+    }
+}

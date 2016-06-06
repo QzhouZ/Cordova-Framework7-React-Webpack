@@ -3,7 +3,7 @@
 	"data": [{
         "id": 1,
         "name": "杭州延生堂凤起路店",
-        "src": "data/img/brand_1.png",
+        "src": "mock/img/brand_1.png",
         "address": "新塘路58号新传媒产业大厦16楼",
         "mode": "门店配送",
         "freight": "5.00",
@@ -15,7 +15,7 @@
             "oldPrice": "119.00",
             "price": "69.12",
             "message": "库存紧张",
-            "src": "data/img/cx_1.png",
+            "src": "mock/img/cx_1.png",
             "number": 1,
             "stock": 10
         },{
@@ -26,14 +26,14 @@
             "oldPrice": "119.20",
             "price": "49.10",
             "message": "",
-            "src": "data/img/cx_3.png",
+            "src": "mock/img/cx_3.png",
             "number": 2,
             "stock": 6
         }]
     },{
         "id": 2,
         "name": "杭州延生堂凤起路店",
-        "src": "data/img/brand_1.png",
+        "src": "mock/img/brand_1.png",
         "address": "新塘路58号新传媒产业大厦17楼",
         "mode": "快递配送",
         "freight": "15.00",
@@ -45,7 +45,7 @@
             "oldPrice": "119.00",
             "price": "23.00",
             "message": "库存不足，请选购其他同类产品",
-            "src": "data/img/hot_2.png",
+            "src": "mock/img/hot_2.png",
             "number": 1,
             "stock": 0
         },{
@@ -56,7 +56,7 @@
             "oldPrice": "119.00",
             "price": "149.00",
             "message": "库存紧张",
-            "src": "data/img/hot_1.png",
+            "src": "mock/img/hot_1.png",
             "number": 11,
             "stock": 10
         }]

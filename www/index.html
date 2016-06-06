@@ -13,8 +13,8 @@
 
 <body>
     <div class="statusbar-overlay" style="background: #2b793e;"></div>
-    <div class="views">
-        <div class="view view-main">
+    <div class="views tabs" style="overflow: hidden;">
+        <div id="home" class="view tab active">
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="left"></div>
@@ -24,6 +24,55 @@
             </div>
             <div class="pages navbar-through">
                 <div data-page="home" class="page toolbar-through"></div>
+            </div>
+        </div>
+        <div id="cate" class="view tab">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left"></div>
+                    <div class="center sliding">分类</div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="cate" class="page toolbar-through"></div>
+            </div>
+        </div>
+        <div id="cart" class="view tab">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left"></div>
+                    <div class="center sliding">购物车</div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="cart" class="page toolbar-through"></div>
+            </div>
+        </div>
+        <div id="ucenter" class="view tab">
+            <div class="pages navbar-through">
+                <div data-page="ucenter" class="page toolbar-through"></div>
+            </div>
+        </div>
+        <div id="footer_bar" class="toolbar tabbar tabbar-labels footer-bar">
+            <div class="toolbar-inner">
+                <a class="tab-link active" href="#home">
+                    <span class="footer-icon icon-home"></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-link" href="#cate">
+                    <span class="footer-icon icon-cate"></span>
+                    <span class="tab-label">分类</span>
+                </a>
+                <a class="tab-link" href="#cart">
+                    <span class="footer-icon icon-cart"></span>
+                    <span class="tab-label">购物车</span>
+                </a>
+                <a class="tab-link" href="#ucenter">
+                    <span class="footer-icon icon-me"></span>
+                    <span class="tab-label">我的</span>
+                </a>
             </div>
         </div>
     </div>

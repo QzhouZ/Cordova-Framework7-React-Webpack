@@ -25,19 +25,20 @@ class PageContent extends BaseModule {
     componentDidMount() {
         this.fetch();
         $$('.page').on('click', '#join_cart', () => {
-            Unit.toast('已成功加入预购蓝!', 0, 1500);
+            Unit.toast('已成功加入购物车!', 0, 1500);
         });
         $$('.page').on('click', '#buy', () => {
-            mainView.router.back({
+            Unit.toast('购买成功!', 0, 1500);
+            /*mainView.router.back({
                 pageName: 'home?reload=1',
                 force: true
-            });
+            });*/
         });
     }
 	toRender() {
         let data = this.state.data;
         return (
-            <div>
+            <div style={{paddingBottom:'50px'}}>
                 <Slider data={data.slider} />
                 <Info data={data.info} />
                 <Tab  goodsId={this.props.query.id} />
@@ -78,8 +79,8 @@ class Info extends React.Component {
             <div className="goods-details-info">
                 <div className="name">{data.name}</div>
                 <div className="price">
-                    <span className="new">¥{data.price}</span>
-                    <span className="old">¥{data.oldPrice}</span>
+                    <span className="new">¥ {data.price}</span>
+                    <span className="old">¥ {data.oldPrice}</span>
                     <span className="sells">{data.sellNumber}</span>
                 </div>
                 <div className="info">
@@ -196,16 +197,16 @@ module.exports = {
     pageContent: PageContent,
     pageClass: 'toolbar-through',
     pageFooter: `
-        <div id="goods_details_footer" class="toolbar tabbar tabbar-labels row footer-bar-btn-list no-gutter">
+        <div id="goods_details_footer" class="toolbar  tabbar-labels row footer-bar-btn-list no-gutter">
             <div id="collect" class="col-20 goods-collect">
             <i class="fa fa-star-o"></i>
             <div>收藏</div>
             </div>
             <div id="join_cart" class="col-40 blue-btn">
-            加入预购篮
+            加入购物车
             </div>
             <div id="buy" class="col-40 orange-btn">
-            立即预购
+            立即购买
             </div>
         </div>
     `

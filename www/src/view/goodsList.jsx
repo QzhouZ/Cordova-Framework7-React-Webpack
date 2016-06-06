@@ -38,7 +38,7 @@ class Goods extends React.Component {
         };
     }
     addCart(goodsId, storeId) {
-        Unit.toast('已成功加入预购篮!', 0, 1500);
+        Unit.toast('已成功加入购物车!', 0, 1500);
     }
     componentDidMount() {
         $$('#goods_list_view').on('click', e => {

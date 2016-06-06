@@ -20,21 +20,51 @@ window.F7 = new Framework7({
 });
 
 // 初始化视图
-window.mainView = F7.addView('.view-main', {
+window.mainView = F7.addView('#home', {
     dynamicNavbar: true,
     domCache: true
 });
 
-$$(document).on('ajaxStart', function () {
+$$(document).on('ajaxStart',  () => {
     //F7.showIndicator();
 });
 
-$$(document).on('ajaxComplete', function () {
+$$(document).on('ajaxComplete', () => {
     F7.hideIndicator();
     F7.pullToRefreshDone();
 });
 
-$$(document).on('click', 'a[data-page]', function(e) {
+
+/**
+ * 添加页面视图
+ * @param view 视图名称
+ */
+let addView = view => {
+    window.mainView = F7.addView('#' + view, {
+        dynamicNavbar: true,
+        domCache: true
+    });
+    pageContentRender(view);
+}
+
+let pageContentRender = (page, query) => {
+    var view = require('view/' + page);
+    var PageContent = view.pageContent;
+    var PageFooter = view.pageFooter;
+    var PageClass = view.pageClass;
+    if (PageClass) {
+        $$(mainView.activePage.container).addClass(PageClass);
+    }
+    ReactDOM.render( 
+        <PageContent query={query} />,
+        mainView.activePage.container
+    );
+    if (PageFooter) {
+        $$(mainView.activePage.container).append(PageFooter);
+    }
+}
+
+$$(document).on('click', 'a[data-page]', e => {
     var link = $$(e.target);
     if (!link.is('a[data-page]')) {
         link = link.parents('a[data-page]');
@@ -67,13 +97,13 @@ $$(document).on('click', 'a[data-page]', function(e) {
                 <div class="navbar">
                     <div class="navbar-inner"></div>
                 </div>
-                <div class="page" data-page="${page}"></div>
+                <div class="page no-tabbar" data-page="${page}"></div>
                 `,
         query: query
     });
 });
 
-$$(document).on('pageBeforeInit', function(e) {
+$$(document).on('pageBeforeInit', e => {
     var page = e.detail.page;
     var view = require('view/' + page.name);
     var pageTitle = view.pageTitle;
@@ -91,26 +121,17 @@ $$(document).on('pageBeforeInit', function(e) {
     }
 });
 
-$$(document).on('pageAfterAnimation', function(e) {
+$$(document).on('pageAfterAnimation', e => {
     var page = e.detail.page;
-    var view = require('view/' + page.name);
-    var PageContent = view.pageContent;
-    var PageFooter = view.pageFooter;
-    var PageClass = view.pageClass;
-    if (PageClass) {
-        $$(page.container).addClass(PageClass);
-    }
-    ReactDOM.render( 
-        <PageContent query={page.query} />,
-        page.container
-    );
-    if (PageFooter) {
-        $$(page.container).append(PageFooter);
-    }
+    pageContentRender(page.name, page.query);
 });
 
-let Home = require('view/home').pageContent;
-ReactDOM.render( 
-    <Home /> ,
-    mainView.activePage.container
-);
+pageContentRender('home');
+
+// 各页面视图显示事件处理，载入对应视图内容
+$$('.views >.tab').on('show', e => {
+    let view = e.srcElement.id;
+    addView(view);
+});
+
+
