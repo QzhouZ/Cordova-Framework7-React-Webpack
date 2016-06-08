@@ -4,7 +4,7 @@ import Unit from 'libs/unit';
 class PageContent extends React.Component {
     render() {
         return (
-            <div className="ucenter-content">
+            <div className="page-content">
                 <div className="ucenter-top">
                     <div className="avatar">
                         <img src={require('img/avatar.png')} />
