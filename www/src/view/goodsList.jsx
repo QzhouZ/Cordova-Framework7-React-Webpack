@@ -21,6 +21,9 @@ class PageContent extends BaseModule {
         });
     }
     toComponentDidMount(contentDom) {
+        contentDom.on('refresh', e => {
+            this.fetch();
+        });
         F7.pullToRefreshTrigger(contentDom);
     }
     toRender() {

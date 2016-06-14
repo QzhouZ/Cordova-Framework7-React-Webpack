@@ -31,8 +31,11 @@ class PageContent extends BaseModule {
             });
         });
     }
-    toComponentDidMount() {
+    toComponentDidMount(contentDom) {
         this.fetch();
+        contentDom.on('refresh', e => {
+            this.fetch();
+        });
     }
     componentWillReceiveProps(nextProps) {
         console.log(nextProps);

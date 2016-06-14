@@ -6,6 +6,7 @@ config.entry['app'].unshift(
     "webpack-dev-server/client?http://127.0.0.1:3000/", 
     "webpack/hot/only-dev-server"
 );
+config.output.publicPath = '/www/dist/';
 config.module.loaders.unshift({
     test: /\.jsx?$/,
     loader: 'react-hot',

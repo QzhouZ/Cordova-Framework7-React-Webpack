@@ -11,9 +11,6 @@ export default class BaseModule extends React.Component {
         if (this.state.pullToRefresh) {
             contentDom.addClass('pull-to-refresh-content');
             F7.initPullToRefresh(contentDom);
-            contentDom.on('refresh', e => {
-                this.fetch();
-            });
         }
         // 无限滚动
         if (this.state.infiniteScroll) {
